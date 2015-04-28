@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<p><%= link_to 'Nova categoria', admin_new_category_path, class: 'btn btn-primary' %></p>
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">Categorias</div>
+      <div class="panel-body">
+        <table class="datatable table table-hover display">
+          <thead>
+            <tr>
+              <th width="10">ID</th>
+              <th>Nome</th>
+              <th width="20">Status</th>
+              <th width="10"></th>
+              <th width="10"></th>
+              <th width="10"></th>
+            </tr>
+          </thead>
+        
+          <tbody>
+            <% @categories.each do |category| %>
+              <tr>
+                <td><%= category.id %></td>
+                <td><%= category.name %></td>
+                <td><%= category.active ? 'Ativo' : 'Inativo' %></td>
+                <td><%= link_to 'Ver', admin_category_path(category), class: 'btn btn-xs btn-primary' %></td>
+                <td><%= link_to 'Editar', admin_edit_category_path(category), class: 'btn btn-xs btn-primary' %></td>
+                <td><%= link_to 'Excluir', admin_category_path(category), class: 'btn btn-xs btn-danger', method: :delete, data: { confirm: 'Tem certeza que quer excluir?' } %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

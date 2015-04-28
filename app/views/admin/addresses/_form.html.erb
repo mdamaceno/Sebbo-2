@@ -1,0 +1,61 @@
+<%= form_for(@address) do |f| %>
+  <% if @address.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@address.errors.count, "error") %> prohibited this address from being saved:</h2>
+
+      <ul>
+      <% @address.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :field1 %><br>
+    <%= f.text_field :field1 %>
+  </div>
+  <div class="field">
+    <%= f.label :field2 %><br>
+    <%= f.text_field :field2 %>
+  </div>
+  <div class="field">
+    <%= f.label :field3 %><br>
+    <%= f.text_field :field3 %>
+  </div>
+  <div class="field">
+    <%= f.label :field4 %><br>
+    <%= f.text_field :field4 %>
+  </div>
+  <div class="field">
+    <%= f.label :city %><br>
+    <%= f.text_field :city %>
+  </div>
+  <div class="field">
+    <%= f.label :state %><br>
+    <%= f.text_field :state %>
+  </div>
+  <div class="field">
+    <%= f.label :postalcode %><br>
+    <%= f.text_field :postalcode %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.text_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :created_by %><br>
+    <%= f.number_field :created_by %>
+  </div>
+  <div class="field">
+    <%= f.label :updated_by %><br>
+    <%= f.number_field :updated_by %>
+  </div>
+  <div class="field">
+    <%= f.label :deactivated_by %><br>
+    <%= f.number_field :deactivated_by %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

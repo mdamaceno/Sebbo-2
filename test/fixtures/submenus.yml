@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  route: MyString
+  active: false
+  menu_id: 
+  created_by: 1
+  updated_by: 1
+  deactivated_by: 1
+
+two:
+  name: MyString
+  route: MyString
+  active: false
+  menu_id: 
+  created_by: 1
+  updated_by: 1
+  deactivated_by: 1

@@ -1,0 +1,25 @@
+<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+  <ul class="nav menu">
+    <% menus.each do |menu| %>
+      <li class="parent "><a href="#"><span class="fa fa-fw <%= menu.icon %>"></span> <%= menu.name %><span data-toggle="collapse" href="#sub-item-<%= menu.id %>" class="icon pull-right"><em class="fa fa-angle-down"></em></span></a>
+        
+        <ul class="children collapse" id="sub-item-<%= menu.id %>">
+          <% menu.submenus.each do |submenu| %>
+            <% if submenu.menu_id == menu.id %>
+              
+              <li>
+                <a class="" href="/admin/<%= submenu.route %>">
+                  <span class="fa fa-fw fa-tags"></span> <%= submenu.name %>
+                </a>
+              </li>
+
+            <% end %>
+          <% end %>
+        </ul>
+
+      </li>
+    <% end %>
+    <li role="presentation" class="divider"></li>
+    <li><a href="login.html"><span class="fa fa-fw fa-user"></span> Página de login</a></li>
+  </ul>
+</div>

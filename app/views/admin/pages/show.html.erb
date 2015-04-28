@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Título:</strong>
+  <%= @page.title %>
+</p>
+
+<p>
+  <strong>Descrição:</strong>
+  <%= @page.description %>
+</p>
+
+<p>
+  <strong>Ativo:</strong>
+  <%= @page.active %>
+</p>
+
+<%= link_to 'Editar', admin_edit_page_path(@page) %> |
+<%= link_to 'Voltar', admin_pages_path %>

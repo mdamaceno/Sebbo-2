@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  freight_price: 9.99
+  freight_type: 1
+  payment_method: 1
+  status: 1
+  delivery_field1: MyString
+  delivery_field2: MyString
+  delivery_field3: MyString
+  delivery_field4: MyString
+  delivery_city: MyString
+  delivery_state: MyString
+  created_by: 1
+  updated_by: 1
+  deactivated_by: 1
+
+two:
+  freight_price: 9.99
+  freight_type: 1
+  payment_method: 1
+  status: 1
+  delivery_field1: MyString
+  delivery_field2: MyString
+  delivery_field3: MyString
+  delivery_field4: MyString
+  delivery_city: MyString
+  delivery_state: MyString
+  created_by: 1
+  updated_by: 1
+  deactivated_by: 1

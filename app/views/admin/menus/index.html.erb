@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Menus</h1>
+
+<table class="datatable table table-hover display">
+  <thead>
+    <tr>
+      <th width="10">ID</th>
+      <th>Nome</th>
+      <th width="60">Ícone</th>
+      <th width="20">Ativo</th>
+      <th width="10"></th>
+      <th width="10"></th>
+      <th width="10"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @menus.each do |menu| %>
+      <tr>
+        <td><%= menu.id %></td>
+        <td><%= menu.name %></td>
+        <td><%= menu.icon %></td>
+        <td><%= menu.active %></td>
+        <td><%= link_to 'Show', admin_menu_path(menu), class: 'btn btn-xs btn-primary' %></td>
+        <td><%= link_to 'Edit', admin_edit_menu_path(menu), class: 'btn btn-xs btn-primary' %></td>
+        <td><%= link_to 'Destroy', admin_menu_path(menu), class: 'btn btn-xs btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Menu', admin_new_menu_path %>

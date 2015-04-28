@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @menu.name %>
+</p>
+
+<p>
+  <strong>Ícone:</strong>
+  <%= @menu.icon %>
+</p>
+
+<p>
+  <strong>Ativo:</strong>
+  <%= @menu.active %>
+</p>
+
+<%= link_to 'Editar', admin_edit_menu_path(@menu) %> |
+<%= link_to 'Voltar', admin_menus_path %>

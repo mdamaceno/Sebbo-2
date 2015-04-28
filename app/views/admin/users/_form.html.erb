@@ -1,0 +1,50 @@
+<%= simple_form_for([:admin, @user]) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.input :firstname, label: 'Primeiro nome' %>
+  </div>
+  <div class="form-group">
+    <%= f.input :lastname, label: 'Último nome' %>
+  </div>
+  <div class="form-group">
+    <%= f.input :phone1, label: 'Telefone fixo' %>
+  </div>
+  <div class="form-group">
+    <%= f.input :phone2, label: 'Celular' %>
+  </div>
+  <div class="form-group">
+    <%= f.input :doc1, label: 'CPF' %>
+  </div>
+  <div class="form-group">
+    <%= f.input :doc2, label: 'RG' %>
+  </div>
+  <div class="form-group">
+    <%= f.input :avatar, label: 'Imagem' %>
+  </div>
+  <div class="form-group">
+    <%= f.input :email, label: 'Email' %>
+  </div>
+  <div class="form-group">
+    <%= f.input :group, label: 'Permissão' %>
+  </div>
+  <div class="form-group">
+    <%= f.input :password, label: 'Senha' %>
+  </div>
+  <div class="form-group">
+    <%= f.input :active, label: 'Ativo', as: :boolean %>
+  </div>
+  <div class="actions">
+    <%= f.button :submit, 'Salvar', class: 'btn btn-primary' %>
+  </div>
+<% end %>

@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Submenus</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Route</th>
+      <th>Active</th>
+      <th>Menu</th>
+      <th>Created by</th>
+      <th>Updated by</th>
+      <th>Deactivated by</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @submenus.each do |submenu| %>
+      <tr>
+        <td><%= submenu.name %></td>
+        <td><%= submenu.route %></td>
+        <td><%= submenu.active %></td>
+        <td><%= submenu.menu %></td>
+        <td><%= submenu.created_by %></td>
+        <td><%= submenu.updated_by %></td>
+        <td><%= submenu.deactivated_by %></td>
+        <td><%= link_to 'Show', submenu %></td>
+        <td><%= link_to 'Edit', edit_submenu_path(submenu) %></td>
+        <td><%= link_to 'Destroy', submenu, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Submenu', new_submenu_path %>

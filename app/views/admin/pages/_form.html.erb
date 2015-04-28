@@ -1,0 +1,26 @@
+<div class="col-md-12">
+  <%= simple_form_for([:admin, @page]) do |f| %>
+    <% if @page.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@page.errors.count, "error") %> prohibited this page from being saved:</h2>
+
+        <ul>
+        <% @page.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= f.input :title, label: 'Título', input_html: { class: 'form-control' } %>
+    </div>
+    <div class="form-group">
+      <%= f.input :description, label: 'Descrição', input_html: { class: 'form-control' } %>
+    </div>
+    <div class="form-group">
+      <%= f.input :active, label: 'Ativo', as: :boolean %>
+    </div>
+    <%= f.button :submit, 'Salvar', class: 'btn-primary' %>
+  <% end %>
+</div>

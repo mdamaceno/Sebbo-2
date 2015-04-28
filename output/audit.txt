@@ -1,0 +1,15 @@
+Foremost version 1.5.7 by Jesse Kornblum, Kris Kendall, and Nick Mikus
+Audit File
+
+Foremost started at Sun Apr 26 14:48:46 2015
+Invocation: foremost 
+Output directory: /home/mdamaceno/Desenvolvimento/sebbo2/output
+Configuration file: /etc/foremost.conf
+------------------------------------------------------------------
+File: stdin
+Start: Sun Apr 26 14:48:47 2015
+Length: Unknown
+ 
+Num	 Name (bs=512)	       Size	 File Offset	 Comment 
+
+Interrupt received at Sun Apr 26 14:49:18 2015
