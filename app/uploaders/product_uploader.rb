@@ -1,9 +1,8 @@
 # encoding: utf-8
-
 class ProductUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
-  # include CarrierWave::RMagick
+  include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
@@ -36,11 +35,36 @@ class ProductUploader < CarrierWave::Uploader::Base
   #   process :resize_to_fit => [50, 50]
   # end
 
+  def create_default_version
+    img = Magick::Image.read(current_path)
+    width = img[0].columns
+    height = img[0].rows
+    if width > height
+      # original is landscape
+      resize_to_fill(460, 420)
+    else
+      # original is portrait
+      resize_to_fit(460, 420)
+    end
+  end
+
+  version :large do
+    process resize_to_fit: [500, 500]
+  end
+
+  version :medium do
+    process resize_to_fit: [300, 300]
+  end
+
+  version :thumb do
+    process resize_to_fit: [100, 100]
+  end
+
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
-  # def extension_white_list
-  #   %w(jpg jpeg gif png)
-  # end
+  def extension_white_list
+    %w(jpg jpeg gif png)
+  end
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.

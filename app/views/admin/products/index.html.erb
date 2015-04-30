@@ -25,7 +25,7 @@
           <tbody>
             <% @products.each do |product| %>
               <tr>
-                <td><%= product.cover %></td>
+                <td><%= image_tag(product.cover.thumb) %></td>
                 <td><%= product.name %></td>
                 <td><%= product.price %></td>
                 <td><%= product.user.email %></td>
