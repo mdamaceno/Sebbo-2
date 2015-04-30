@@ -10,12 +10,12 @@
         <table class="datatable table table-hover display">
           <thead>
             <tr>
+              <th>Imagem</th>
               <th>Nome</th>
               <th>Preço</th>
-              <th>Imagem</th>
-              <th>Estoque</th>
-              <th>Status</th>
               <th>Vendedor</th>
+              <th>Categoria</th>
+              <th width="30">Status</th>
               <th width="10"></th>
               <th width="10"></th>
               <th width="10"></th>
@@ -25,21 +25,15 @@
           <tbody>
             <% @products.each do |product| %>
               <tr>
+                <td><%= product.cover %></td>
                 <td><%= product.name %></td>
                 <td><%= product.price %></td>
-                <td><%= product.cover %></td>
-                <td><%= product.description %></td>
-                <td><%= product.stock %></td>
-                <td><%= product.active %></td>
-                <td><%= product.category %></td>
-                <td><%= product.subcategory %></td>
-                <td><%= product.user %></td>
-                <td><%= product.created_by %></td>
-                <td><%= product.updated_by %></td>
-                <td><%= product.deactivated_by %></td>
-                <td><%= link_to 'Show', product %></td>
-                <td><%= link_to 'Edit', edit_product_path(product) %></td>
-                <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                <td><%= product.user.email %></td>
+                <td><%= product.category.name %></td>
+                <td><%= product.active ? "Ativo" : "Inativo" %></td>
+                <td><%= link_to 'Ver', admin_product_path(product), class: 'btn btn-xs btn-primary' %></td>
+                <td><%= link_to 'Editar', admin_edit_product_path(product), class: 'btn btn-xs btn-primary' %></td>
+                <td><%= link_to 'Excluir', admin_product_path(product), class: 'btn btn-xs btn-danger', method: :delete, data: { confirm: 'Tem certeza que deseja excluir?' } %></td>
               </tr>
             <% end %>
           </tbody>

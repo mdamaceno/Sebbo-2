@@ -1,5 +1,5 @@
 <div class="col-md-12">
-<%= simple_form_for(@product) do |f| %>
+<%= simple_form_for([:admin, @product]) do |f| %>
   <% if @product.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
@@ -12,33 +12,75 @@
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= f.input :name, label: 'Nome' %>
+  <div class="row">
+    <div class="form-group">
+      <div class="col-sm-12 col-md-10">
+        <%= f.input :name, label: 'Nome' %>
+      </div>
+    </div>
   </div>
-  <div class="form-group">
-    <%= f.input :price, label: 'Preço' %>
+
+  <div class="row">
+    <div class="form-group">
+      <div class="col-sm-12 col-md-4">
+        <%= f.association :category, label: 'Categoria' %>
+      </div>
+    </div>
   </div>
-  <div class="form-group">
-    <%= f.input :cover, label: 'Imagem' %>
+
+  <div class="row">
+    <div class="form-group">
+      <div class="col-sm-12 col-md-4">
+        <%= f.input :cover, label: 'Imagem' %>
+      </div>
+    </div>
   </div>
-  <div class="form-group">
-    <%= f.input :description, label: 'Descrição' %>
+  <div class="row">
+    <div class="form-group">
+      <div class="col-sm-12 col-md-10">
+        <%= f.input :description, label: 'Descrição', as: :ckeditor %>
+      </div>
+    </div>
   </div>
-  <div class="form-group">
-    <%= f.input :stock, label: 'Estoque' %>
+
+  <div class="row">
+    <div class="form-group">
+      <div class="col-sm-12 col-md-2">
+        <%= f.input :price, label: 'Preço' %>
+      </div>
+    </div>
   </div>
-  <div class="form-group">
-    <%= f.input :category, label: 'Categoria' %>
+
+  <div class="row">
+    <div class="form-group">
+      <div class="col-sm-12 col-md-2">
+        <%= f.input :stock, label: 'Estoque' %>
+      </div>
+    </div>
   </div>
-  <div class="form-group">
-    <%= f.input :subcategory, label: 'Subcategoria' %>
+  <!-- <div class="form-group"> -->
+    <%#= f.association :subcategory, label: 'Subcategoria' %>
+  <!-- </div> -->
+  <div class="row">
+    <div class="form-group">
+      <div class="col-sm-12 col-md-4">
+        <%= f.association :user, label: 'Usuário' %>
+      </div>
+    </div>
   </div>
-  <div class="form-group">
-    <%= f.input :user, label: 'Usuário' %>
+  <div class="row">
+    <div class="form-group">
+      <div class="col-sm-12 col-md-2">
+        <%= f.input :active, label: 'Ativo', as: :boolean %>
+      </div>
+    </div>
   </div>
-  <div class="form-group">
-    <%= f.input :active, label: 'Status', as: :boolean %>
+  <div class="row">
+    <div class="form-group">
+      <div class="col-sm-2">
+        <%= f.button :submit, 'Salvar', class: 'btn-primary' %>
+      </div>
+    </div>
   </div>
-  <%= f.button :submit, 'Salvar', class: 'btn-primary' %>
 <% end %>
 </div>

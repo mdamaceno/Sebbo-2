@@ -22,13 +22,23 @@ class Admin::ProductsController < Admin::ApplicationController
 
   def create
     @product = Product.new(product_params)
-    @product.save
-    respond_with(@product)
+    respond_to do |format|
+      if @product.save
+        format.html { redirect_to admin_products_path, notice: "Criado com sucesso." }
+      else
+        format.html { render :new }
+      end
+    end
   end
 
   def update
-    @product.update(product_params)
-    respond_with(@product)
+    respond_to do |format|
+      if @product.update(product_params)
+        format.html { redirect_to admin_product_path(@product), notice: "Atualizado com sucesso." }
+      else
+        format.html { render :edit }
+      end
+    end
   end
 
   def destroy
