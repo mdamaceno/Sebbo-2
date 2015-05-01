@@ -4,17 +4,18 @@ Rails.application.routes.draw do
 
   mount Ckeditor::Engine => '/ckeditor'
   devise_for :users, path: 'auth',
-  path_names: {
-    sign_in:      'entrar',
-    sign_out:     'sair',
-    password:     'senha',
-    confirmation: 'verificacao',
-    unlock:       'desbloquear',
-    registration: 'cadastro',
-    sign_up:      'registrar'
+  path_names:    {
+    sign_in:       '',
+    sign_out:      'sair',
+    password:      'senha',
+    confirmation:  'verificacao',
+    unlock:        'desbloquear',
+    registration:  'entrar',
+    sign_up:       ''
   },
-  controllers: {
-    sessions: 'site/auth/sessions'
+  controllers:   {
+    sessions:      'site/auth/sessions',
+    registrations: 'site/auth/registrations'
   }
 
   scope module: 'site' do

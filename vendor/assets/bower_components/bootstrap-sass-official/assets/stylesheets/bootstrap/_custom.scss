@@ -11,3 +11,13 @@
     font-weight: bold;
   }
 }
+
+.login-registration {
+  h1, h2, h3 {
+    color: $brand-primary;
+  }
+  .field {
+    padding: 0 1em 1em;
+    border: 1px solid $brand-primary;
+  }
+}

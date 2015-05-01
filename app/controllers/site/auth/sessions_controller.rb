@@ -1,5 +1,5 @@
 class Site::Auth::SessionsController < Devise::SessionsController
-# before_filter :configure_sign_in_params, only: [:create]
+  # before_filter :configure_sign_in_params, only: [:create]
 
   layout 'application_site'
 
