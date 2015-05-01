@@ -122,20 +122,23 @@ ActiveRecord::Schema.define(version: 20150429013107) do
   add_index "product_orders", ["order_id"], name: "index_product_orders_on_order_id", using: :btree
 
   create_table "products", force: :cascade do |t|
-    t.string   "name",           limit: 255
-    t.decimal  "price",                        precision: 10
-    t.string   "cover",          limit: 255
-    t.text     "description",    limit: 65535
-    t.integer  "stock",          limit: 4
-    t.boolean  "active",         limit: 1
-    t.integer  "category_id",    limit: 4
-    t.integer  "subcategory_id", limit: 4
-    t.integer  "user_id",        limit: 4
-    t.integer  "created_by",     limit: 4
-    t.integer  "updated_by",     limit: 4
-    t.integer  "deactivated_by", limit: 4
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
+    t.string   "name",             limit: 255
+    t.decimal  "price",                          precision: 8, scale: 2
+    t.string   "cover",            limit: 255
+    t.string   "publishing_house", limit: 255
+    t.string   "author",           limit: 255
+    t.integer  "number_pages",     limit: 4
+    t.text     "description",      limit: 65535
+    t.integer  "stock",            limit: 4
+    t.boolean  "active",           limit: 1
+    t.integer  "category_id",      limit: 4
+    t.integer  "subcategory_id",   limit: 4
+    t.integer  "user_id",          limit: 4
+    t.integer  "created_by",       limit: 4
+    t.integer  "updated_by",       limit: 4
+    t.integer  "deactivated_by",   limit: 4
+    t.datetime "created_at",                                             null: false
+    t.datetime "updated_at",                                             null: false
   end
 
   add_index "products", ["category_id"], name: "index_products_on_category_id", using: :btree

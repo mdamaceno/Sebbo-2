@@ -3,6 +3,7 @@ Menu.create([name: 'Cadastros', icon: 'fa-bars', active: 1])
 Menu.create([name: 'Gerenciar Site', icon: 'fa-desktop', active: 1])
 Menu.create([name: 'Configurações', icon: 'fa-cog', active: 1])
 Menu.create([name: 'Suporte', icon: 'fa-info', active: 1])
+puts 'Menus criados'
 
 # Submenu
 Submenu.create([name: 'Clientes', route: 'clientes', active: 1, menu_id: 1])
@@ -13,6 +14,7 @@ Submenu.create([name: 'Pedidos', route: 'pedidos', active: 1, menu_id: 1])
 Submenu.create([name: 'Home', route: 'home', active: 1, menu_id: 2])
 Submenu.create([name: 'Páginas', route: 'paginas', active: 1, menu_id: 2])
 Submenu.create([name: 'Usuários', route: 'usuarios', active: 1, menu_id: 3])
+puts 'Submenus criados'
 
 # Pages
 Page.create([title: 'Quem somos', description: 'Lorem ipsum dolor sit amet.', active: 1])
@@ -21,6 +23,7 @@ Page.create([title: 'Termos de uso', description: 'Lorem ipsum dolor sit amet.',
 Page.create([title: 'Entrega', description: 'Lorem ipsum dolor sit amet.', active: 1])
 Page.create([title: 'Trocas & Devoluções', description: 'Lorem ipsum dolor sit amet.', active: 1])
 Page.create([title: 'Fale Conosco', description: 'Lorem ipsum dolor sit amet.', active: 1])
+puts 'Páginas criadas'
 
 # Categories
 Category.create([name: 'Literatura Infanto-juvenil', active: 1])
@@ -46,6 +49,7 @@ Category.create([name: 'História', active: 1])
 Category.create([name: 'Religião', active: 1])
 Category.create([name: 'Esporte e Lazer', active: 1])
 Category.create([name: 'Dicionário', active: 1])
+puts 'Categorias criadas'
 
 # Users
 u = User.new
@@ -60,3 +64,4 @@ u.group = 0
 u.email = 'maadamaceno@gmail.com'
 u.password = '123456789'
 u.save!
+puts 'Usuário criado'

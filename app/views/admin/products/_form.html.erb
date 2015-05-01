@@ -21,6 +21,30 @@
 
   <div class="row">
     <div class="form-group">
+      <div class="col-sm-12 col-md-6">
+        <%= f.input :author, label: 'Autor(es)' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group">
+      <div class="col-sm-12 col-md-6">
+        <%= f.input :publishing_house, label: 'Editora' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group">
+      <div class="col-sm-12 col-md-2">
+        <%= f.input :number_pages, label: 'Número de páginas' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group">
       <div class="col-sm-12 col-md-4">
         <%= f.association :category, label: 'Categoria' %>
       </div>

@@ -4,6 +4,8 @@ class Admin::ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   layout 'application_admin'
 
+  before_action :authenticate_user!
+
   helper_method :menus
 
   def menus

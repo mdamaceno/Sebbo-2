@@ -47,11 +47,15 @@ class Admin::ProductsController < Admin::ApplicationController
   end
 
   private
-    def set_product
-      @product = Product.find(params[:id])
-    end
+  def set_product
+    @product = Product.find(params[:id])
+  end
 
-    def product_params
-      params.require(:product).permit(:name, :price, :cover, :description, :stock, :active, :category_id, :subcategory_id, :user_id, :created_by, :updated_by, :deactivated_by)
-    end
+  def product_params
+    params.require(:product).permit(
+      :name, :price, :cover, :description, :publishing_house, :author,
+      :number_pages, :stock, :active, :category_id, :subcategory_id, :user_id,
+      :created_by, :updated_by, :deactivated_by
+    )
+  end
 end

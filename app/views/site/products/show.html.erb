@@ -1,11 +1,22 @@
 <section class="product-details">
   <div class="row">
+    <div class="col-sm-12">
+      <ol class="breadcrumb">
+        <li><%= link_to "Início", root_path %></li>
+        <li><a href="#"><%= @product.category.name %></a></li>
+        <li class="active"><%= @product.name %></li>
+      </ol>
+    </div>
+  </div>
+  <div class="row">
     <div class="col-md-6 col-sm-12">
       <%= image_tag(@product.cover.large, class: 'img-responsive img-rounded') %>
     </div>
     <div class="col-md-6 col-sm-12">
       <h1><%= @product.name %></h1>
       <br/>
+
+      <p class="price"><%= number_to_currency(@product.price, unit: 'R$', separator: ",", delimiter: "") %></p>
 
       <div class="row">
         <div class="col-sm-12">
@@ -20,11 +31,11 @@
         </div>
       </div>
 
-      <p><strong>Editora</strong>: Alguma coisa</p>
-      <p><strong>Autor(es)</strong>: Alguém</p>
-      <p><strong>Páginas</strong>: 100</p>
+      <p><strong>Autor(es)</strong>: <%= @product.author %></p>
+      <p><strong>Editora</strong>: <%= @product.publishing_house %></p>
+      <p><strong>Páginas</strong>: <%= @product.number_pages %></p>
       <p><strong>Vendedor</strong>: <%= @product.user.firstname %> <%= @product.user.lastname %></p>
-      <p class="text-right"><button class="btn btn-primary">Adicionar ao carrinho</button></p>
+      <p class="text-right"><button class="btn btn-primary"><span class="fa fa-fw fa-cart-plus"></span> Adicionar ao carrinho</button></p>
       <p class="text-right"><a href="#"><span class="fa fa-fw fa-facebook"></span> Compartilhar no Facebook</a></p>
     </div>
   </div>
@@ -33,7 +44,7 @@
   <div class="row">
     <div class="col-sm-12">
       <div class="panel panel-default">
-        <div class="panel-heading">Informações do produto</div>
+        <div class="panel-heading"><span class="fa fa-fw fa-info-circle"></span> Informações do produto</div>
         <div class="panel-body">
           <%= raw @product.description %>
         </div>
@@ -44,7 +55,7 @@
   <div class="row">
     <div class="col-sm-12">
       <div class="panel panel-default">
-        <div class="panel-heading">Comentários</div>
+        <div class="panel-heading"><span class="fa fa-fw fa-comments"></span> Comentários</div>
         <div class="panel-body">
           <div id="disqus_thread"></div>
         </div>

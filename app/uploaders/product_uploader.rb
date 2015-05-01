@@ -41,24 +41,39 @@ class ProductUploader < CarrierWave::Uploader::Base
     height = img[0].rows
     if width > height
       # original is landscape
-      resize_to_fill(460, 420)
+      resize_to_limit(330, 210)
     else
       # original is portrait
-      resize_to_fit(460, 420)
+      resize_to_limit(330, 210)
+    end
+  end
+
+  def create_other_version(x, y)
+    img = Magick::Image.read(current_path)
+    width = img[0].columns
+    height = img[0].rows
+    if width > height
+      # original is landscape
+      resize_to_fill(x, y)
+    else
+      # original is portrait
+      resize_to_fit(x, y)
     end
   end
 
   version :large do
-    process resize_to_fit: [500, 500]
+    process create_other_version: [500, 350]
   end
 
   version :medium do
-    process resize_to_fit: [300, 300]
+    process create_other_version: [300, 200]
   end
 
   version :thumb do
-    process resize_to_fit: [100, 100]
+    process create_other_version: [100, 60]
   end
+
+  process :create_default_version
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
