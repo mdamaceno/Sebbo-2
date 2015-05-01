@@ -1,3 +1,16 @@
-<% @products.each do |product| %>
-  <%= product.name %>
-<% end %>
+<div class="row">
+  <% @products.each do |product| %>
+    <div class="col-sm-12 col-md-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= product.name %></h3>
+        </div>
+        <div class="panel-body">
+          <p class="text-center"><%= image_tag(product.cover.medium) %></p>
+          <%= raw product.description.truncate(100) %>
+        </div>
+        <div class="panel-footer text-right"><a href="#">Ver detalhes</a> | <strong><%= number_to_currency(product.price, unit: 'R$', separator: ",", delimiter: "") %></strong></div>
+      </div>
+    </div>
+  <% end %>
+</div>
