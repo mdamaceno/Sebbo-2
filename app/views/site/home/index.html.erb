@@ -9,7 +9,7 @@
           <p class="text-center"><%= image_tag(product.cover.medium) %></p>
           <%= raw product.description.truncate(100) %>
         </div>
-        <div class="panel-footer text-right"><a href="#">Ver detalhes</a> | <strong><%= number_to_currency(product.price, unit: 'R$', separator: ",", delimiter: "") %></strong></div>
+        <div class="panel-footer text-right"><%= link_to "Ver detalhes", product_path(product) %> | <strong><%= number_to_currency(product.price, unit: 'R$', separator: ",", delimiter: "") %></strong></div>
       </div>
     </div>
   <% end %>

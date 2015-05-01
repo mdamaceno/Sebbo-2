@@ -1,0 +1,54 @@
+<section class="product-details">
+  <div class="row">
+    <div class="col-md-6 col-sm-12">
+      <%= image_tag(@product.cover.large, class: 'img-responsive img-rounded') %>
+    </div>
+    <div class="col-md-6 col-sm-12">
+      <h1><%= @product.name %></h1>
+      <br/>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <form class="form-horizontal">
+            <div class="form-group">
+              <label for="stock" class="col-sm-2 control-label">Quantidade</label>
+              <div class="col-sm-2">
+                <input type="number" class="form-control" id="stock" min="1" max="<%= @product.stock %>" value="1">
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <p><strong>Editora</strong>: Alguma coisa</p>
+      <p><strong>Autor(es)</strong>: Alguém</p>
+      <p><strong>Páginas</strong>: 100</p>
+      <p><strong>Vendedor</strong>: <%= @product.user.firstname %> <%= @product.user.lastname %></p>
+      <p class="text-right"><button class="btn btn-primary">Adicionar ao carrinho</button></p>
+      <p class="text-right"><a href="#"><span class="fa fa-fw fa-facebook"></span> Compartilhar no Facebook</a></p>
+    </div>
+  </div>
+  <br/>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">Informações do produto</div>
+        <div class="panel-body">
+          <%= raw @product.description %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">Comentários</div>
+        <div class="panel-body">
+          <div id="disqus_thread"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
