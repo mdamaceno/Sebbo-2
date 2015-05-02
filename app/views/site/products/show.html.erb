@@ -20,11 +20,11 @@
 
       <div class="row">
         <div class="col-sm-12">
-          <form class="form-horizontal">
+          <form class="form-horizontal" id="product_quantity">
             <div class="form-group">
               <label for="stock" class="col-sm-2 control-label">Quantidade</label>
               <div class="col-sm-2">
-                <input type="number" class="form-control" id="stock" min="1" max="<%= @product.stock %>" value="1">
+                <input type="number" class="form-control" id="p_stock" name="p_stock" min="1" max="<%= @product.stock %>" value="1">
               </div>
             </div>
           </form>
@@ -35,7 +35,7 @@
       <p><strong>Editora</strong>: <%= @product.publishing_house %></p>
       <p><strong>Páginas</strong>: <%= @product.number_pages %></p>
       <p><strong>Vendedor</strong>: <%= @product.user.firstname %> <%= @product.user.lastname %></p>
-      <p class="text-right"><button class="btn btn-primary"><span class="fa fa-fw fa-cart-plus"></span> Adicionar ao carrinho</button></p>
+      <p class="text-right"><button class="btn btn-primary <% if !user_signed_in? %>disabled<% end %>" id="addToCart"><span class="fa fa-fw fa-cart-plus"></span> Adicionar ao carrinho</button></p>
       <p class="text-right"><a href="#"><span class="fa fa-fw fa-facebook"></span> Compartilhar no Facebook</a></p>
     </div>
   </div>
@@ -63,3 +63,34 @@
     </div>
   </div>
 </section>
+
+<% if user_signed_in? %>
+<script>
+var productId = <%= @product.id %>;
+var userId = <%= current_user.id %>;
+$('#addToCart').on('click', function() {
+var qty = document.getElementById('p_stock').value;
+  $.ajax({
+      url: '/carrinho',
+      type: 'POST',
+      dataType: 'json',
+      data: {
+        cart: {
+          quantity: qty,
+          product_id: productId,
+          created_by: userId
+        }
+      },
+    })
+    .done(function(data) {
+      alert(data.message);
+    })
+    .fail(function(data) {
+      console.log("error");
+    })
+    .always(function() {
+      console.log("complete");
+    });
+});
+</script>
+<% end %>

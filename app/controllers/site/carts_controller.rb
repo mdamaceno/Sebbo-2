@@ -1,7 +1,7 @@
-class CartsController < ApplicationController
+class Site::CartsController < Site::ApplicationController
   before_action :set_cart, only: [:show, :edit, :update, :destroy]
 
-  respond_to :html
+  respond_to :html, :json
 
   def index
     @carts = Cart.all
@@ -22,8 +22,11 @@ class CartsController < ApplicationController
 
   def create
     @cart = Cart.new(cart_params)
-    @cart.save
-    respond_with(@cart)
+    if @cart.save
+      render json: { message: "Produto adicionado ao seu carrinho com sucesso." }
+    else
+      render json: { message: "Não foi possível adicionar este produto o carrinho. Tente novamente." }
+    end
   end
 
   def update
