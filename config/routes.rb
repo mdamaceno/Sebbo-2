@@ -59,6 +59,7 @@ Rails.application.routes.draw do
     patch  '/carrinho/:id'        => 'carts#update'
     put    '/carrinho/:id'        => 'carts#update'
     delete '/carrinho/:id'        => 'carts#destroy'
+    get    '/carrinho-contagem'   => 'carts#index_count'
 
   end
 
@@ -135,11 +136,11 @@ Rails.application.routes.draw do
     delete '/produtos-pedidos/:id'        => 'product_orders#destroy'
 
     # Carrinho de compra
-    get    '/carrinho'            => 'carts#index',  as: :carts
+    get    '/carrinho'            => 'carts#index',      as: :carts
     post   '/carrinho'            => 'carts#create'
-    get    '/carrinho/novo'       => 'carts#new',    as: :new_cart
-    get    '/carrinho/:id/editar' => 'carts#edit',   as: :edit_cart
-    get    '/carrinho/:id'        => 'carts#show',   as: :cart
+    get    '/carrinho/novo'       => 'carts#new',        as: :new_cart
+    get    '/carrinho/:id/editar' => 'carts#edit',       as: :edit_cart
+    get    '/carrinho/:id'        => 'carts#show',       as: :cart
     patch  '/carrinho/:id'        => 'carts#update'
     put    '/carrinho/:id'        => 'carts#update'
     delete '/carrinho/:id'        => 'carts#destroy'

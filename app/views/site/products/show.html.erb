@@ -8,6 +8,14 @@
       </ol>
     </div>
   </div>
+
+  <div class="row" id="success-alert">
+    <div class="col-sm-12">
+      <div class="alert alert-success" id="s-alert">
+      </div>
+    </div>
+  </div>
+
   <div class="row">
     <div class="col-md-6 col-sm-12">
       <%= image_tag(@product.cover.large, class: 'img-responsive img-rounded') %>
@@ -68,8 +76,18 @@
 <script>
 var productId = <%= @product.id %>;
 var userId = <%= current_user.id %>;
+
+$("#success-alert").hide();
+
 $('#addToCart').on('click', function() {
-var qty = document.getElementById('p_stock').value;
+
+  $("#success-alert").alert();
+  $("#success-alert").fadeTo(4000, 500).fadeOut(500, function(){
+    $("#success-alert").alert('close');
+  });
+
+  var qty = document.getElementById('p_stock').value;
+
   $.ajax({
       url: '/carrinho',
       type: 'POST',
@@ -83,13 +101,23 @@ var qty = document.getElementById('p_stock').value;
       },
     })
     .done(function(data) {
-      alert(data.message);
+      console.log(data.message);
+      document.getElementById('s-alert').innerHTML = data.message;
+
+      $.ajax({
+        url: '/carrinho-contagem',
+        type: 'GET',
+        dataType: 'json'
+      })
+      .done(function(data) {
+        document.getElementById('cart-count').innerHTML = data.message;
+      })
+      .fail(function() {
+        console.log("error");
+      });
     })
     .fail(function(data) {
       console.log("error");
-    })
-    .always(function() {
-      console.log("complete");
     });
 });
 </script>

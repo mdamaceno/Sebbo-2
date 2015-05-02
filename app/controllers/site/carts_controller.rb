@@ -8,6 +8,13 @@ class Site::CartsController < Site::ApplicationController
     respond_with(@carts)
   end
 
+  def index_count
+    if user_signed_in?
+      @carts = Cart.where(created_by: current_user.id).count
+      render json: { message: @carts }
+    end
+  end
+
   def show
     respond_with(@cart)
   end
@@ -22,10 +29,27 @@ class Site::CartsController < Site::ApplicationController
 
   def create
     @cart = Cart.new(cart_params)
-    if @cart.save
-      render json: { message: "Produto adicionado ao seu carrinho com sucesso." }
+    @carts = Cart.where(created_by: current_user.id)
+
+    aux = 0
+
+    @carts.each do |cart|
+      if cart.product_id === @cart.product_id
+        aux = 1
+        break
+      else
+        aux = 0
+      end
+    end
+
+    if aux == 0
+      if @cart.save
+        render json: { message: "Produto adicionado ao seu carrinho com sucesso." }
+      else
+        render json: { message: "Não foi possível adicionar este produto o carrinho. Tente novamente." }
+      end
     else
-      render json: { message: "Não foi possível adicionar este produto o carrinho. Tente novamente." }
+      render json: { message: "Você já possui este produto em seu carrinho." }
     end
   end
 
@@ -40,11 +64,11 @@ class Site::CartsController < Site::ApplicationController
   end
 
   private
-    def set_cart
-      @cart = Cart.find(params[:id])
-    end
+  def set_cart
+    @cart = Cart.find(params[:id])
+  end
 
-    def cart_params
-      params.require(:cart).permit(:quantity, :product_id, :created_by, :updated_by)
-    end
+  def cart_params
+    params.require(:cart).permit(:quantity, :product_id, :created_by, :updated_by)
+  end
 end

@@ -15,7 +15,7 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#"><span class="fa fa-fw fa-shopping-cart"></span> Meu Carrinho</a></li>
+          <li><a href="#"><span class="fa fa-fw fa-shopping-cart"></span> Meu Carrinho <span class="label label-success" id="cart-count"></span></a></li>
           <% if user_signed_in? %>
             <li><%= link_to destroy_user_session_path, method: 'delete' do %><span class="fa fa-fw fa-sign-out"></span> Sair<% end %></li>
           <% else %>
@@ -26,3 +26,17 @@
     </div><!-- /.container-fluid -->
   </nav>
 </div>
+
+<script>
+$.ajax({
+  url: '/carrinho-contagem',
+  type: 'GET',
+  dataType: 'json'
+})
+.done(function(data) {
+  document.getElementById('cart-count').innerHTML = data.message;
+})
+.fail(function() {
+  console.log("error");
+});
+</script>
