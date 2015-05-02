@@ -1,0 +1,82 @@
+<section class="product-cart">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Seu carrinho</h3>
+        </div>
+        <div class="panel-body">
+          <p class="text-right">
+            <button class="btn btn-primary">Finalizar pedido</button>
+          </p>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Produto</th>
+                <th width="10">Quantidade</th>
+                <th>Preço unit.</th>
+                <th>Valor total</th>
+                <th width="10"></th>
+                <th width="10"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @carts.each do |cart| %>
+                <tr>
+                  <td style="display:none" class="pid"><%= cart.id %></td>
+                  <td class="nr"><%= cart.product.name %></td>
+                  <td class="p-qty">
+                    <input type="number" class="form-control" id="p_quantity" min="1" max="<%= cart.product.stock %>" value="<%= cart.quantity %>">
+                  </td>
+                  <td><%= number_to_currency(cart.product.price, unit: 'R$', separator: ",", delimiter: "") %></td>
+                  <td class="total-price"><%= number_to_currency(cart.product.price * cart.quantity, unit: 'R$', separator: ",", delimiter: "") %></td>
+                  <td><a href="#" class="product-refresh"><span class="fa fa-fw fa-refresh text-primary"></span></a></td>
+                  <td><%= link_to cart_path(cart), method: 'delete' do %><span class="fa fa-fw fa-times text-danger"></span><% end %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <div class="panel-footer text-right text-primary" id="total-cart">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+var sum = 0;
+$(".total-price").each(function() {
+
+  var value = $(this).text();
+  var value = value.replace('R$','').replace(',','.');
+  // add only if the value is number
+  if(!isNaN(value) && value.length != 0) {
+      sum += parseFloat(value);
+  }
+});
+
+document.getElementById('total-cart').innerHTML = 'Total: R$' + sum.toFixed(2).replace('.',',');
+
+$(".product-refresh").click(function(event) {
+  var id = $(this).closest("tr").find(".pid").text();
+  var qty = $(this).closest("tr").find(".p-qty").find("#p_quantity").val();
+
+  $.ajax({
+    url: '/carrinho/' + id,
+    type: 'post',
+    dataType: 'json',
+    data: {
+      cart: {
+        quantity: qty
+      }
+    },
+  })
+  .done(function() {
+    location.reload();
+  })
+  .fail(function() {
+    console.log("error");
+  });
+});
+</script>

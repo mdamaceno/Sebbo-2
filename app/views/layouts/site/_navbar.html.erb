@@ -15,7 +15,7 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#"><span class="fa fa-fw fa-shopping-cart"></span> Meu Carrinho <span class="label label-success" id="cart-count"></span></a></li>
+          <li><%= link_to carts_path do %><span class="fa fa-fw fa-shopping-cart"></span> Meu Carrinho <span class="label label-success" id="cart-count"></span><% end %></li>
           <% if user_signed_in? %>
             <li><%= link_to destroy_user_session_path, method: 'delete' do %><span class="fa fa-fw fa-sign-out"></span> Sair<% end %></li>
           <% else %>

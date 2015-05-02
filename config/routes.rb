@@ -57,7 +57,7 @@ Rails.application.routes.draw do
     get    '/carrinho/:id/editar' => 'carts#edit',   as: :edit_cart
     get    '/carrinho/:id'        => 'carts#show',   as: :cart
     patch  '/carrinho/:id'        => 'carts#update'
-    put    '/carrinho/:id'        => 'carts#update'
+    post   '/carrinho/:id'        => 'carts#update'
     delete '/carrinho/:id'        => 'carts#destroy'
     get    '/carrinho-contagem'   => 'carts#index_count'
 

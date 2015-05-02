@@ -1,3 +1,7 @@
+.table tbody>tr>td {
+  vertical-align: middle;
+}
+
 .navbar-custom {
   margin-top: 1em;
   border-top: 1px solid $brand-primary;
@@ -21,12 +25,10 @@
   .panel-custom {
     border: 1px solid $brand-primary;
     min-height: 385px;
-
     .panel-heading {
       background: $brand-primary;
       color: #eee;
     }
-
     .panel-image {
       height: 210px;
       margin-bottom: 1em;
@@ -41,5 +43,11 @@
   .field {
     padding: 0 1em 1em;
     border: 1px solid $brand-primary;
+  }
+}
+
+.product-cart {
+  #total-cart {
+    font-weight: bold;
   }
 }

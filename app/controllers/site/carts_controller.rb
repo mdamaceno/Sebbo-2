@@ -3,8 +3,10 @@ class Site::CartsController < Site::ApplicationController
 
   respond_to :html, :json
 
+  before_action :authenticate_user!, only: [:index]
+
   def index
-    @carts = Cart.all
+    @carts = Cart.where(created_by: current_user.id)
     respond_with(@carts)
   end
 
@@ -15,16 +17,9 @@ class Site::CartsController < Site::ApplicationController
     end
   end
 
-  def show
-    respond_with(@cart)
-  end
-
   def new
     @cart = Cart.new
     respond_with(@cart)
-  end
-
-  def edit
   end
 
   def create
@@ -55,7 +50,7 @@ class Site::CartsController < Site::ApplicationController
 
   def update
     @cart.update(cart_params)
-    respond_with(@cart)
+    redirect_to carts_path
   end
 
   def destroy
