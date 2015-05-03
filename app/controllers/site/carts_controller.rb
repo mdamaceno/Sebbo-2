@@ -6,14 +6,16 @@ class Site::CartsController < Site::ApplicationController
   before_action :authenticate_user!, only: [:index]
 
   def index
-    @carts = Cart.where(created_by: current_user.id)
+    @carts = Cart.where(user_id: current_user.id)
     respond_with(@carts)
   end
 
   def index_count
     if user_signed_in?
-      @carts = Cart.where(created_by: current_user.id).count
+      @carts = Cart.where(user_id: current_user.id).count
       render json: { message: @carts }
+    else
+      render nothing: true
     end
   end
 
@@ -24,7 +26,7 @@ class Site::CartsController < Site::ApplicationController
 
   def create
     @cart = Cart.new(cart_params)
-    @carts = Cart.where(created_by: current_user.id)
+    @carts = Cart.where(user_id: current_user.id)
 
     aux = 0
 
@@ -59,11 +61,14 @@ class Site::CartsController < Site::ApplicationController
   end
 
   private
+
   def set_cart
     @cart = Cart.find(params[:id])
   end
 
   def cart_params
-    params.require(:cart).permit(:quantity, :product_id, :created_by, :updated_by)
+    params.require(:cart).permit(
+      :quantity, :product_id, :user_id, :updated_by
+    )
   end
 end

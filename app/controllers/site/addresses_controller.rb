@@ -1,4 +1,4 @@
-class AddressesController < ApplicationController
+class Site::AddressesController < Site::ApplicationController
   before_action :set_address, only: [:show, :edit, :update, :destroy]
 
   respond_to :html

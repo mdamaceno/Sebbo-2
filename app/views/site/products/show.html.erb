@@ -9,12 +9,14 @@
     </div>
   </div>
 
+  <% if user_signed_in? %>
   <div class="row" id="success-alert">
     <div class="col-sm-12">
       <div class="alert alert-success" id="s-alert">
       </div>
     </div>
   </div>
+  <% end %>
 
   <div class="row">
     <div class="col-md-6 col-sm-12">
@@ -109,7 +111,7 @@ $('#addToCart').on('click', function() {
         cart: {
           quantity: qty,
           product_id: productId,
-          created_by: userId
+          user_id: userId
         }
       },
     })

@@ -34,13 +34,14 @@ ActiveRecord::Schema.define(version: 20150429013107) do
   create_table "carts", force: :cascade do |t|
     t.integer  "quantity",   limit: 4
     t.integer  "product_id", limit: 4
-    t.integer  "created_by", limit: 4
+    t.integer  "user_id",    limit: 4
     t.integer  "updated_by", limit: 4
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
   end
 
   add_index "carts", ["product_id"], name: "index_carts_on_product_id", using: :btree
+  add_index "carts", ["user_id"], name: "index_carts_on_user_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",           limit: 255
@@ -205,6 +206,7 @@ ActiveRecord::Schema.define(version: 20150429013107) do
 
   add_foreign_key "addresses", "users"
   add_foreign_key "carts", "products"
+  add_foreign_key "carts", "users"
   add_foreign_key "product_orders", "orders"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "subcategories"

@@ -61,6 +61,16 @@ Rails.application.routes.draw do
     delete '/carrinho/:id'        => 'carts#destroy'
     get    '/carrinho-contagem'   => 'carts#index_count'
 
+    # Usuários
+    get    '/usuarios'            => 'users#index',  as: :users
+    post   '/usuarios'            => 'users#create'
+    get    '/usuarios/novo'       => 'users#new',    as: :new_user
+    get    '/usuarios/:id/editar' => 'users#edit',   as: :edit_user
+    get    '/usuarios/:id'        => 'users#show',   as: :user
+    patch  '/usuarios/:id'        => 'users#update'
+    put    '/usuarios/:id'        => 'users#update'
+    delete '/usuarios/:id'        => 'users#destroy'
+
   end
 
   namespace :admin do

@@ -1,0 +1,74 @@
+<%= simple_form_for(@user) do |f| %>
+    <% if @user.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+        <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <fieldset>
+      <legend>Informações pessoais</legend>
+
+      <div class="form-group">
+        <%= f.input :firstname, label: 'Primeiro nome', input_html: { class: 'form-control' } %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.input :lastname, label: 'Último nome', input_html: { class: 'form-control' } %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.input :phone1, label: 'Telefone', input_html: { class: 'form-control' } %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.input :phone1, label: 'Celular', input_html: { class: 'form-control' } %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.input :doc1, label: 'RG', input_html: { class: 'form-control' } %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.input :doc2, label: 'CPF', input_html: { class: 'form-control' } %>
+      </div>
+    </fieldset>
+
+    <%= f.simple_fields_for :addresses do |a| %>
+      <fieldset>
+        <legend>Endereço</legend>
+
+        <div class="form-group">
+          <%= a.input :field1, label: 'Endereço', input_html: { class: 'form-control' } %>
+        </div>
+        
+        <div class="form-group">
+          <%= a.input :field2, label: 'Nº', input_html: { class: 'form-control' } %>
+        </div>
+        
+        <div class="form-group">
+          <%= a.input :field3, label: 'Complemento', input_html: { class: 'form-control' } %>
+        </div>
+        
+        <div class="form-group">
+          <%= a.input :field4, label: 'Bairro', input_html: { class: 'form-control' } %>
+        </div>
+        
+        <div class="form-group">
+          <%= a.input :city, label: 'Cidade', input_html: { class: 'form-control' } %>
+        </div>
+        
+        <div class="form-group">
+          <%= a.input :state, label: 'Estado', input_html: { class: 'form-control' } %>
+        </div>
+      </fieldset>
+    <% end %>
+
+    <%= f.button :submit, "Salvar", class: "btn btn-primary" %>
+
+<% end %>
