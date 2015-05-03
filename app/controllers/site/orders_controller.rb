@@ -1,7 +1,7 @@
-class OrdersController < ApplicationController
+class Site::OrdersController < Site::ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
 
-  respond_to :html
+  respond_to :html, :json
 
   def index
     @orders = Order.all
@@ -23,7 +23,7 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.save
-    respond_with(@order)
+    render json: { message: "Pedido registrado com sucesso." }
   end
 
   def update
@@ -42,6 +42,6 @@ class OrdersController < ApplicationController
     end
 
     def order_params
-      params.require(:order).permit(:freight_price, :freight_type, :payment_method, :status, :delivery_field1, :delivery_field2, :delivery_field3, :delivery_field4, :delivery_city, :delivery_state, :created_by, :updated_by, :deactivated_by)
+      params.require(:order).permit(:freight_price, :freight_type, :payment_method, :status, :delivery_field1, :delivery_field2, :delivery_field3, :delivery_field4, :delivery_city, :delivery_state, :user_id, :updated_by, :deactivated_by)
     end
 end

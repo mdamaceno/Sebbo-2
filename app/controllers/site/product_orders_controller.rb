@@ -1,7 +1,7 @@
-class ProductOrdersController < ApplicationController
+class Site::ProductOrdersController < Site::ApplicationController
   before_action :set_product_order, only: [:show, :edit, :update, :destroy]
 
-  respond_to :html
+  respond_to :html, :json
 
   def index
     @product_orders = ProductOrder.all
@@ -23,7 +23,7 @@ class ProductOrdersController < ApplicationController
   def create
     @product_order = ProductOrder.new(product_order_params)
     @product_order.save
-    respond_with(@product_order)
+    render json: { message: 'Alguma coisa' }
   end
 
   def update

@@ -9,7 +9,7 @@
           <div id="p-cart" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
             <div class="panel-body">
               <p class="text-right">
-                <button class="btn btn-success">Finalizar pedido</button>
+                <button class="btn btn-success" id="save-order">Finalizar pedido</button>
               </p>
               <table class="table">
                 <thead>
@@ -30,7 +30,7 @@
                       <td class="p-qty">
                         <input type="number" class="form-control" id="p_quantity" min="1" max="<%= cart.product.stock %>" value="<%= cart.quantity %>">
                       </td>
-                      <td><%= number_to_currency(cart.product.price, unit: 'R$', separator: ",", delimiter: "") %></td>
+                      <td class="p-price"><%= number_to_currency(cart.product.price, unit: 'R$', separator: ",", delimiter: "") %></td>
                       <td class="total-price"><%= number_to_currency(cart.product.price * cart.quantity, unit: 'R$', separator: ",", delimiter: "") %></td>
                       <td><a href="#" class="product-refresh"><span class="fa fa-fw fa-refresh text-primary"></span></a></td>
                       <td><%= link_to cart_path(cart), method: 'delete', data: { confirm: 'Deseja remover este produto do seu carrinho?' } do %><span class="fa fa-fw fa-times text-danger"></span><% end %></td>
@@ -45,40 +45,15 @@
         </div>
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title"><a href="#p-address" data-toggle="collapse" data-parent="#accordion" aria-expanded="true" aria-controls="collapseOne"><span class="fa fa-fw fa-shopping-cart"></span> Endereço</a></h3>
+            <h3 class="panel-title"><a href="#p-address" data-toggle="collapse" data-parent="#accordion" aria-expanded="true" aria-controls="collapseOne"><span class="fa fa-fw fa-map-marker"></span> Endereço</a></h3>
           </div>
           <div id="p-address" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
             <div class="panel-body">
-              <p class="text-right">
-                <button class="btn btn-success">Finalizar pedido</button>
-              </p>
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>Produto</th>
-                    <th width="10">Quantidade</th>
-                    <th>Preço unit.</th>
-                    <th>Valor total</th>
-                    <th width="10"></th>
-                    <th width="10"></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <% @carts.each do |cart| %>
-                    <tr>
-                      <td style="display:none" class="pid"><%= cart.id %></td>
-                      <td class="nr"><%= cart.product.name %></td>
-                      <td class="p-qty">
-                        <input type="number" class="form-control" id="p_quantity" min="1" max="<%= cart.product.stock %>" value="<%= cart.quantity %>">
-                      </td>
-                      <td><%= number_to_currency(cart.product.price, unit: 'R$', separator: ",", delimiter: "") %></td>
-                      <td class="total-price"><%= number_to_currency(cart.product.price * cart.quantity, unit: 'R$', separator: ",", delimiter: "") %></td>
-                      <td><a href="#" class="product-refresh"><span class="fa fa-fw fa-refresh text-primary"></span></a></td>
-                      <td><%= link_to cart_path(cart), method: 'delete', data: { confirm: 'Deseja remover este produto do seu carrinho?' } do %><span class="fa fa-fw fa-times text-danger"></span><% end %></td>
-                    </tr>
-                  <% end %>
-                </tbody>
-              </table>
+              <% if current_user.addresses.size != 0 %>
+                <p><%= current_user.addresses[0].field1 %>, <%= current_user.addresses[0].field2 %><%= ", #{current_user.addresses[0].field3}" if current_user.addresses[0].field3? %> - <%= current_user.addresses[0].city %> - <%= current_user.addresses[0].state %></p>
+              <% else %>
+                <p>Não há endereço cadastrado.</p>
+              <% end %>
             </div>
           </div>
         </div>
@@ -126,6 +101,78 @@ $(".product-refresh").click(function(event) {
 
 <script>
   // Ao clicar em Finalizar pedido
+  $('#save-order').click(function() {
+    var delivery_field1 = "<%= current_user.addresses[0].field1 %>";
+    var delivery_field2 = "<%= current_user.addresses[0].field2 %>";
+    var delivery_field3 = "<%= current_user.addresses[0].field3 %>";
+    var delivery_field4 = "<%= current_user.addresses[0].field4 %>";
+    var delivery_city   = "<%= current_user.addresses[0].city   %>";
+    var delivery_state  = "<%= current_user.addresses[0].state  %>";
+    var userId = "<%= current_user.id %>";
 
+    $.ajax({
+      url: '/pedido',
+      type: 'POST',
+      dataType: 'json',
+      data: {
+        order: {
+          freight_price: 0,
+          freight_type: 0,
+          payment_method: 0,
+          status: 1,
+          delivery_field1: delivery_field1,
+          delivery_field2: delivery_field2,
+          delivery_field3: delivery_field3,
+          delivery_field4: delivery_field4,
+          delivery_city: delivery_city,
+          delivery_state: delivery_state,
+          user_id: userId
+        }
+      },
+    })
+    .done(function(data) {
+      console.log("success");
+      console.log(data);
+
+      var name = [], quantity = [], price = [];
+
+      $('.nr').each(function(index, el) {
+        name.push($(this).text());
+      });
+      $('.p-qty').each(function(index, el) {
+        quantity.push($(this).find('p_quantity').text());
+      });
+      $('.p-price').each(function(index, el) {
+        price.push($(this).text());
+      });
+
+      for (var i = 0; i < name.length; i++) {
+        $.ajax({
+          url: '/produtos-pedidos',
+          type: 'POST',
+          dataType: 'json',
+          data: {
+            product_order: {
+              name: name[i],
+              price: price[i],
+              quantity: quantity[i],
+              order_id: 1
+            }
+          },
+        })
+        .done(function(data) {
+          console.log(data);
+        })
+        .fail(function() {
+          console.log("error");
+        });
+      };
+
+    })
+    .fail(function() {
+      console.log("error");
+    });
+    
+  });
 
 </script>

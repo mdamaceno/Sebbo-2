@@ -20,25 +20,26 @@ Rails.application.routes.draw do
 
   scope module: 'site' do
 
-    #   Produtos
-    get '/produtos'          => 'products#index',      as: :products
-    get '/produtos/:id'      => 'products#show',       as: :product
+    #    Produtos
+    get  '/produtos'          => 'products#index',      as: :products
+    get  '/produtos/:id'      => 'products#show',       as: :product
 
-    #   Categorias
-    get '/categorias'        => 'categories#index',    as: :categories
-    get '/categorias/:id'    => 'categories#show',     as: :category
+    #    Categorias
+    get  '/categorias'        => 'categories#index',    as: :categories
+    get  '/categorias/:id'    => 'categories#show',     as: :category
 
-    #   Subcategorias
-    get '/subcategorias'     => 'subcategories#index', as: :subcategories
-    get '/subcategorias/:id' => 'subcategories#show',  as: :subcategory
+    #    Subcategorias
+    get  '/subcategorias'     => 'subcategories#index', as: :subcategories
+    get  '/subcategorias/:id' => 'subcategories#show',  as: :subcategory
 
-    #   Páginas
-    get '/paginas'           => 'pages#index',         as: :pages
-    get '/paginas/:id'       => 'pages#show',          as: :page
+    #    Páginas
+    get  '/paginas'           => 'pages#index',         as: :pages
+    get  '/paginas/:id'       => 'pages#show',          as: :page
 
-    #   Pedidos
-    get '/pedidos'           => 'orders#index',        as: :orders
-    get '/pedidos/:id'       => 'orders#show',         as: :order
+    #    Pedidos
+    get  '/pedido'     => 'orders#index', as: :orders
+    get  '/pedido/:id' => 'orders#show',  as: :order
+    post '/pedido'     => 'orders#create'
 
     # Produtos de pedidos
     get    '/produtos-pedidos'            => 'product_orders#index',  as: :product_orders

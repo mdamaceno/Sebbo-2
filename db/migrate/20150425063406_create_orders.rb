@@ -11,11 +11,12 @@ class CreateOrders < ActiveRecord::Migration
       t.string :delivery_field4
       t.string :delivery_city
       t.string :delivery_state
-      t.integer :created_by
+      t.references :user, index: true
       t.integer :updated_by
       t.integer :deactivated_by
 
       t.timestamps null: false
     end
+    add_foreign_key :orders, :users
   end
 end

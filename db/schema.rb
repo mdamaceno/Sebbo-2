@@ -92,12 +92,14 @@ ActiveRecord::Schema.define(version: 20150429013107) do
     t.string   "delivery_field4", limit: 255
     t.string   "delivery_city",   limit: 255
     t.string   "delivery_state",  limit: 255
-    t.integer  "created_by",      limit: 4
+    t.integer  "user_id",         limit: 4
     t.integer  "updated_by",      limit: 4
     t.integer  "deactivated_by",  limit: 4
     t.datetime "created_at",                                 null: false
     t.datetime "updated_at",                                 null: false
   end
+
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
   create_table "pages", force: :cascade do |t|
     t.string   "title",          limit: 255
@@ -207,6 +209,7 @@ ActiveRecord::Schema.define(version: 20150429013107) do
   add_foreign_key "addresses", "users"
   add_foreign_key "carts", "products"
   add_foreign_key "carts", "users"
+  add_foreign_key "orders", "users"
   add_foreign_key "product_orders", "orders"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "subcategories"
