@@ -12,3 +12,7 @@ Rails.application.config.assets.version = '1.0'
 
 Rails.application.config.assets.precompile += %w( site/application_site.css )
 Rails.application.config.assets.precompile += %w( admin/application_admin.css )
+
+%w( carts ).each do |controller|
+  Rails.application.config.assets.precompile += ["site/#{controller}.js"]
+end
