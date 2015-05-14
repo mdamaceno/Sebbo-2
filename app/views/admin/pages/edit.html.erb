@@ -10,3 +10,13 @@
     </div>
   </div>
 </div>
+
+<% content_for :title_breadcrumb do %>
+  <section class="content-header">
+    <h1>
+      Páginas
+      <small>(edição)</small>
+    </h1>
+    <%= render 'breadcrumb' %>
+  </section>
+<% end %>

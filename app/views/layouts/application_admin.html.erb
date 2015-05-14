@@ -6,13 +6,23 @@
   <%= javascript_include_tag 'admin/application' %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class="skin-black">
 
   <%= render 'layouts/admin/navbar_admin' %>
-  <%= render 'layouts/admin/sidebar_admin' %>
 
-  <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
-    <%= yield %>
+  <div class="wrapper row-offcanvas row-offcanvas-left">
+    <%= render 'layouts/admin/sidebar_admin' %>
+
+    <aside class="right-side">
+        <!-- Content Header (Page header) -->
+
+        <%= yield :title_breadcrumb %>
+
+        <section class="content">
+          <%= yield %>
+        </section>
+    </aside>
+
   </div>
 
   <%#= console %>

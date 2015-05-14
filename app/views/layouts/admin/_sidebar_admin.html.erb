@@ -1,25 +1,37 @@
-<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
-  <ul class="nav menu">
-    <% menus.each do |menu| %>
-      <li class="parent "><a href="#"><span class="fa fa-fw <%= menu.icon %>"></span> <%= menu.name %><span data-toggle="collapse" href="#sub-item-<%= menu.id %>" class="icon pull-right"><em class="fa fa-angle-down"></em></span></a>
-        
-        <ul class="children collapse" id="sub-item-<%= menu.id %>">
-          <% menu.submenus.each do |submenu| %>
-            <% if submenu.menu_id == menu.id %>
-              
-              <li>
-                <a class="" href="/admin/<%= submenu.route %>">
-                  <span class="fa fa-fw fa-tags"></span> <%= submenu.name %>
-                </a>
-              </li>
+<!-- Left side column. contains the logo and sidebar -->
+<aside class="left-side sidebar-offcanvas">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- Sidebar user panel -->
+        <div class="user-panel">
+          <div class="pull-left image">
+            <img src="img/avatar3.png" class="img-circle" alt="User Image" />
+          </div>
+          <div class="pull-left info">
+            <p>Olá, Marco</p>
 
-            <% end %>
+            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+          </div>
+        </div>
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu">
+          <% menus.each_with_index do |menu, index| %>
+            <li class="treeview">
+              <a href="#">
+                <span class="fa fa-fw <%= menu.icon %>"></span>
+                <span><%= menu.name %></span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <% menu.submenus.each do |submenu| %>
+                  <% if submenu.menu_id == menu.id %>
+                    <li><a href="/admin/<%= submenu.route %>"><i class="fa fa-angle-double-right"></i> <%= submenu.name %></a></li>
+                  <% end %>
+                <% end %>
+              </ul>
+            </li>
           <% end %>
         </ul>
-
-      </li>
-    <% end %>
-    <li role="presentation" class="divider"></li>
-    <li><a href="login.html"><span class="fa fa-fw fa-user"></span> Página de login</a></li>
-  </ul>
-</div>
+    </section>
+    <!-- /.sidebar -->
+</aside>

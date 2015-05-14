@@ -5,40 +5,42 @@
 <div class="row">
   <div class="col-lg-12">
     <div class="panel panel-default">
-      <div class="panel-heading">Produtos</div>
       <div class="panel-body">
-        <table class="datatable table table-hover display">
-          <thead>
-            <tr>
-              <th>Imagem</th>
-              <th>Nome</th>
-              <th>Preço</th>
-              <th>Vendedor</th>
-              <th>Categoria</th>
-              <th width="30">Status</th>
-              <th width="10"></th>
-              <th width="10"></th>
-              <th width="10"></th>
-            </tr>
-          </thead>
-        
-          <tbody>
-            <% @products.each do |product| %>
+        <div class="dataTables_wrapper form-inline" role="grid">
+          <table class="table table-hover datatable">
+            <thead>
               <tr>
-                <td><%= image_tag(product.cover.thumb) %></td>
-                <td><%= product.name %></td>
-                <td><%= product.price %></td>
-                <td><%= product.user.email %></td>
-                <td><%= product.category.name %></td>
-                <td><%= product.active ? "Ativo" : "Inativo" %></td>
-                <td><%= link_to 'Ver', admin_product_path(product), class: 'btn btn-xs btn-primary' %></td>
-                <td><%= link_to 'Editar', admin_edit_product_path(product), class: 'btn btn-xs btn-primary' %></td>
-                <td><%= link_to 'Excluir', admin_product_path(product), class: 'btn btn-xs btn-danger', method: :delete, data: { confirm: 'Tem certeza que deseja excluir?' } %></td>
+                <th>Imagem</th>
+                <th>Nome</th>
+                <th>Preço</th>
+                <th>Vendedor</th>
+                <th>Categoria</th>
+                <th width="30">Status</th>
+                <th width="10"></th>
+                <th width="10"></th>
+                <th width="10"></th>
               </tr>
-            <% end %>
-          </tbody>
-        </table>
+            </thead>
+          
+            <tbody>
+              <% @products.each do |product| %>
+                <tr>
+                  <td><%= image_tag(product.cover.thumb) %></td>
+                  <td><%= product.name %></td>
+                  <td><%= product.price %></td>
+                  <td><%= product.user.email %></td>
+                  <td><%= product.category.name %></td>
+                  <td><%= product.active ? "Ativo" : "Inativo" %></td>
+                  <td><%= link_to 'Ver', admin_product_path(product), class: 'btn btn-xs btn-primary' %></td>
+                  <td><%= link_to 'Editar', admin_edit_product_path(product), class: 'btn btn-xs btn-primary' %></td>
+                  <td><%= link_to 'Excluir', admin_product_path(product), class: 'btn btn-xs btn-danger', method: :delete, data: { confirm: 'Tem certeza que deseja excluir?' } %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
 </div>
+

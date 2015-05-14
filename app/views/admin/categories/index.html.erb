@@ -5,7 +5,6 @@
 <div class="row">
   <div class="col-lg-12">
     <div class="panel panel-default">
-      <div class="panel-heading">Categorias</div>
       <div class="panel-body">
         <table class="datatable table table-hover display">
           <thead>
@@ -36,3 +35,16 @@
     </div>
   </div>
 </div>
+
+<% content_for :title_breadcrumb do %>
+<section class="content-header">
+    <h1>
+        Categorias
+        <small>Listagem das categorias</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><%= link_to root_path do %><i class="fa fa-home"></i> Home</a><% end %></li>
+        <li class="active">Categorias</li>
+    </ol>
+</section>
+<% end %>
