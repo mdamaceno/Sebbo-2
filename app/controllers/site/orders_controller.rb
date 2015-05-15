@@ -1,19 +1,15 @@
 class Site::OrdersController < Site::ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
 
+  before_action :authenticate_user!
   respond_to :html, :json
 
   def index
-    @orders = Order.all
-    respond_with(@orders)
+    @orders = Order.where(user_id: current_user.id)
+
   end
 
   def show
-    respond_with(@order)
-  end
-
-  def new
-    @order = Order.new
     respond_with(@order)
   end
 

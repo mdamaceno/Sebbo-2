@@ -18,6 +18,7 @@
           <li><%= link_to carts_path do %><span class="fa fa-fw fa-shopping-cart"></span> Meu Carrinho <span class="label label-success" id="cart-count"></span><% end %></li>
           <% if user_signed_in? %>
             <li><%= link_to edit_user_path(current_user) do %><span class="fa fa-fw fa-user"></span> Minha conta<% end %></li>
+            <li><%= link_to orders_path do %><span class="fa fa-fw fa-barcode"></span> Meus pedidos<% end %></li>
             <li><%= link_to destroy_user_session_path, method: 'delete' do %><span class="fa fa-fw fa-sign-out"></span> Sair<% end %></li>
           <% else %>
             <li><%= link_to user_registration_path, method: 'delete' do %><span class="fa fa-fw fa-sign-in"></span> Entrar<% end %></li>

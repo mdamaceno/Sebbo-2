@@ -1,7 +1,11 @@
-<%= current_user.id %>
 <section class="product-cart">
   <div class="row">
     <div class="col-sm-12">
+      <p class="text-right">
+        <%= link_to 'Continuar comprando', root_path, class: 'btn btn-primary' %>
+        <button class="btn btn-success" id="save-order">Finalizar pedido</button>
+      </p>
+      <p class="text-danger">Por favor, confira todos os campos antes de finalizar o pedido.</p>
       <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
         <div class="panel panel-default">
           <a href="#p-cart" data-toggle="collapse" data-parent="#accordion" aria-expanded="false" aria-controls="collapseOne">

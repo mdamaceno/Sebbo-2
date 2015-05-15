@@ -83,6 +83,8 @@ $('#save-order').click(function() {
         price.push($(this).text());
       });
 
+      console.log(price);
+
       for (var i = 0; i < name.length; i++) {
         $.ajax({
             url: '/produtos-pedidos',
@@ -91,7 +93,7 @@ $('#save-order').click(function() {
             data: {
               product_order: {
                 name: name[i],
-                price: price[i],
+                price: price[i].replace('R$', '').replace(',', '.'),
                 quantity: quantity[i],
                 order_id: data.id
               }

@@ -37,7 +37,7 @@ Rails.application.routes.draw do
     get  '/paginas/:id'       => 'pages#show',          as: :page
 
     #    Pedidos
-    get  '/pedido'     => 'orders#index', as: :orders
+    get  '/meus-pedidos'     => 'orders#index', as: :orders
     get  '/pedido/:id' => 'orders#show',  as: :order
     post '/pedido'     => 'orders#create'
 
