@@ -35,13 +35,16 @@ $(".product-refresh").click(function(event) {
 
 // Ao clicar em Finalizar pedido
 $('#save-order').click(function() {
-  var delivery_field1 = "<%= current_user.addresses[0].field1 %>";
-  var delivery_field2 = "<%= current_user.addresses[0].field2 %>";
-  var delivery_field3 = "<%= current_user.addresses[0].field3 %>";
-  var delivery_field4 = "<%= current_user.addresses[0].field4 %>";
-  var delivery_city = "<%= current_user.addresses[0].city   %>";
-  var delivery_state = "<%= current_user.addresses[0].state  %>";
-  var userId = "<%= current_user.id %>";
+  var delivery_field1 = gon.address.field1;
+  var delivery_field2 = gon.address.field2;
+  var delivery_field3 = gon.address.field3;
+  var delivery_field4 = gon.address.field4;
+  var delivery_city   = gon.address.city;
+  var delivery_state  = gon.address.state;
+  var userId          = gon.current_user.id;
+  var payment_method  = $("input[name='payment-method']:checked").val();
+
+  console.log(payment_method);
 
   $.ajax({
       url: '/pedido',
@@ -51,8 +54,8 @@ $('#save-order').click(function() {
         order: {
           freight_price: 0,
           freight_type: 0,
-          payment_method: 0,
-          status: 1,
+          payment_method: payment_method,
+          status: 'Processando',
           delivery_field1: delivery_field1,
           delivery_field2: delivery_field2,
           delivery_field3: delivery_field3,
@@ -64,7 +67,6 @@ $('#save-order').click(function() {
       },
     })
     .done(function(data) {
-      console.log("success");
       console.log(data);
 
       var name = [],
@@ -75,7 +77,7 @@ $('#save-order').click(function() {
         name.push($(this).text());
       });
       $('.p-qty').each(function(index, el) {
-        quantity.push($(this).find('p_quantity').text());
+        quantity.push($(this).find('#p_quantity').val());
       });
       $('.p-price').each(function(index, el) {
         price.push($(this).text());
@@ -91,12 +93,12 @@ $('#save-order').click(function() {
                 name: name[i],
                 price: price[i],
                 quantity: quantity[i],
-                order_id: 1
+                order_id: data.id
               }
             },
           })
           .done(function(data) {
-            console.log(data);
+            window.location.reload();
           })
           .fail(function() {
             console.log("error");

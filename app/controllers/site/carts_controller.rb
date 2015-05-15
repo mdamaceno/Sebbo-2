@@ -7,6 +7,8 @@ class Site::CartsController < Site::ApplicationController
 
   def index
     @carts = Cart.where(user_id: current_user.id)
+    gon.current_user = current_user
+    gon.address = current_user.addresses[0]
     respond_with(@carts)
   end
 

@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   # Relationships
   has_many :products
   has_many :addresses
+  has_many :orders
   accepts_nested_attributes_for :addresses, allow_destroy: true
 
   # Authorization over the pages
