@@ -73,7 +73,10 @@ Rails.application.routes.draw do
     delete '/usuarios/:id'        => 'users#destroy'
 
     # Frete
-    post    '/calcula-frete'       => 'freight#calc'
+    post   '/calcula-frete'       => 'freight#calc'
+
+    # Páginas estáticas
+    get    '/contato'             => 'contacts#index', as: :contacts
 
   end
 
