@@ -2,8 +2,8 @@ class Order < ActiveRecord::Base
   belongs_to :user
   has_many :product_orders
 
-  enum payment_method: {
-    'cc' => 0, 'bb' => 1, 'db' => 2
+  enum freight_type: {
+    'pac' => 0, 'sedex' => 1
   }
   enum status: {
     'Processando' => 0, 'Em análise' => 1, 'Confirmado' => 2,

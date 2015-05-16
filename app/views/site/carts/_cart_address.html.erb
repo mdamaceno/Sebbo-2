@@ -1,7 +1,7 @@
 <div id="p-address" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
   <div class="panel-body">
     <% if current_user.addresses.size != 0 %>
-      <p><%= current_user.addresses[0].field1 %>, <%= current_user.addresses[0].field2 %><%= ", #{current_user.addresses[0].field3}" if current_user.addresses[0].field3? %> - <%= current_user.addresses[0].city %> - <%= current_user.addresses[0].state %></p>
+      <p><%= current_user.addresses[0].field1 %>, <%= current_user.addresses[0].field2 %><%= ", #{current_user.addresses[0].field3}" if current_user.addresses[0].field3? %> - <%= current_user.addresses[0].city %> - <%= current_user.addresses[0].state %> - CEP <span id="zipcode"><%= current_user.addresses[0].postalcode %></span></p>
     <% else %>
       <p>Não há endereço cadastrado.</p>
     <% end %>

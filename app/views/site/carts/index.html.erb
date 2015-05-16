@@ -1,10 +1,6 @@
 <section class="product-cart">
   <div class="row">
     <div class="col-sm-12">
-      <p class="text-right">
-        <%= link_to 'Continuar comprando', root_path, class: 'btn btn-primary' %>
-        <button class="btn btn-success" id="save-order">Finalizar pedido</button>
-      </p>
       <p class="text-danger">Por favor, confira todos os campos antes de finalizar o pedido.</p>
       <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
         <div class="panel panel-default">
@@ -31,9 +27,24 @@
           </a>
           <%= render 'cart_payment_method' %>
         </div>
+        <div class="panel panel-default">
+          <a href="#p-freight" data-toggle="collapse" data-parent="#accordion" aria-expanded="true" aria-controls="collapseOne">
+            <div class="panel-heading">
+              <h3 class="panel-title"><span class="fa fa-fw fa-freight"></span> Frete</h3>
+            </div>
+          </a>
+          <%= render 'cart_freight' %>
+        </div>
       </div>
+      <p class="text-right">
+        <%= link_to 'Continuar comprando', root_path, class: 'btn btn-primary' %>
+        <button class="btn btn-success" id="save-order">Finalizar pedido</button>
+      </p>
     </div>
   </div>
 </section>
 
-<%= javascript_include_tag 'site/carts' %>
+<% if @carts.size > 0 %>
+  <%= javascript_include_tag 'site/calcula-frete' %>
+  <%= javascript_include_tag 'site/carts' %>
+<% end %>

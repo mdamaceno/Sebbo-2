@@ -72,6 +72,9 @@ Rails.application.routes.draw do
     put    '/usuarios/:id'        => 'users#update'
     delete '/usuarios/:id'        => 'users#destroy'
 
+    # Frete
+    post    '/calcula-frete'       => 'freight#calc'
+
   end
 
   namespace :admin do

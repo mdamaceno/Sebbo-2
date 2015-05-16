@@ -8,7 +8,7 @@
           <thead>
             <tr>
               <th width="60">Código</th>
-              <th>Forma de pagamento</th>
+              <th>Email</th>
               <th>Vendedor</th>
               <th width="140">Status</th>
               <th width="10"></th>
@@ -20,13 +20,13 @@
           <tbody>
             <% @orders.each do |order| %>
               <tr>
-                <td><%= order.id %></td>
-                <td><%= order.payment_method %></td>
+                <td><%= "#{order.id}".rjust(8, '0') %></td>
                 <td><%= order.user.email %></td>
+                <td><%= "#{order.user.firstname} #{order.user.lastname}" %></td>
                 <td><%= order.status %></td>
-                <td><%= link_to 'Ver', admin_order_path(order) %></td>
-                <td><%= link_to 'Editar', admin_edit_order_path(order) %></td>
-                <td><%= link_to 'Excluir', admin_order_path(order), method: :delete, data: { confirm: 'Deseja mesmo excluir?' } %></td>
+                <td><%= link_to 'Ver', admin_order_path(order), class: 'btn btn-primary btn-xs' %></td>
+                <td><%= link_to 'Editar', admin_edit_order_path(order), class: 'btn btn-primary btn-xs' %></td>
+                <td><%= link_to 'Cancelar', admin_order_path(order), class: 'btn btn-danger btn-xs', method: :delete, data: { confirm: 'Deseja mesmo cancelar este pedido?' } %></td>
               </tr>
             <% end %>
           </tbody>

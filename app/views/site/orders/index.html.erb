@@ -16,7 +16,7 @@
             <tbody>
               <% @orders.each do |order| %>
                 <tr>
-                  <td><%= order.id %></td>
+                  <td><%= "#{order.id}".rjust(8, '0') %></td>
                   <td><%= dmy order.created_at %></td>
                   <td><%= number_to_currency(order.total(order.id), unit: 'R$', separator: ",", delimiter: "") %></td>
                   <td><%= order.status %></td>

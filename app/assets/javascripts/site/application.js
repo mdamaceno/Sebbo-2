@@ -12,5 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require parsley
 //= require bootstrap-sass-official/assets/javascripts/bootstrap-sprockets
 

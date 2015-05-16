@@ -3,7 +3,6 @@ class CreateOrders < ActiveRecord::Migration
     create_table :orders do |t|
       t.decimal :freight_price
       t.integer :freight_type
-      t.integer :payment_method
       t.integer :status
       t.string :delivery_field1
       t.string :delivery_field2
