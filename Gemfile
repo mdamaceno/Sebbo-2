@@ -44,6 +44,10 @@ group :development, :test do
   gem 'rspec-rails'
 end
 
+group :production do
+  gem 'puma'
+end
+
 gem 'devise'
 gem 'simple_form'
 gem 'jquery-datatables-rails', '~> 3.2.0'
