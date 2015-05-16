@@ -11,6 +11,11 @@ class Order < ActiveRecord::Base
   }
 
   def total(id)
-    ProductOrder.select('id, price, quantity').where(order_id: id).sum('product_orders.price * product_orders.quantity')
+    ProductOrder.select(
+      'product_orders.id, product_orders.price, product_orders.quantity,
+      orders.freight_price'
+    ).where(order_id: id).joins(:order).sum(
+      'product_orders.price * product_orders.quantity + orders.freight_price'
+    )
   end
 end

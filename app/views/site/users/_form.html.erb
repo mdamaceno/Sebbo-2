@@ -14,28 +14,46 @@
     <fieldset>
       <legend>Informações pessoais</legend>
 
-      <div class="form-group">
-        <%= f.input :firstname, label: 'Primeiro nome', input_html: { class: 'form-control' } %>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= f.input :firstname, label: 'Nome', input_html: { class: 'form-control' } %>
+          </div>
+        </div>
+        
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= f.input :lastname, label: 'Sobrenome', input_html: { class: 'form-control' } %>
+          </div>
+        </div>
       </div>
       
-      <div class="form-group">
-        <%= f.input :lastname, label: 'Último nome', input_html: { class: 'form-control' } %>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <%= f.input :phone1, label: 'Telefone', input_html: { class: 'form-control' } %>
+          </div>
+        </div>
+        
+        <div class="col-md-3">
+          <div class="form-group">
+            <%= f.input :phone1, label: 'Celular', input_html: { class: 'form-control' } %>
+          </div>
+        </div>
       </div>
       
-      <div class="form-group">
-        <%= f.input :phone1, label: 'Telefone', input_html: { class: 'form-control' } %>
-      </div>
-      
-      <div class="form-group">
-        <%= f.input :phone1, label: 'Celular', input_html: { class: 'form-control' } %>
-      </div>
-      
-      <div class="form-group">
-        <%= f.input :doc1, label: 'RG', input_html: { class: 'form-control' } %>
-      </div>
-      
-      <div class="form-group">
-        <%= f.input :doc2, label: 'CPF', input_html: { class: 'form-control' } %>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <%= f.input :doc1, label: 'RG', input_html: { class: 'form-control' } %>
+          </div>
+        </div>
+        
+        <div class="col-md-3">
+          <div class="form-group">
+            <%= f.input :doc2, label: 'CPF', input_html: { class: 'form-control' } %>
+          </div>
+        </div>
       </div>
     </fieldset>
 
@@ -43,28 +61,52 @@
       <fieldset>
         <legend>Endereço</legend>
 
-        <div class="form-group">
-          <%= a.input :field1, label: 'Endereço', input_html: { class: 'form-control' } %>
+        <div class="row">
+          <div class="col-md-2">
+            <div class="form-group">
+              <%= a.input :postalcode, label: 'CEP', input_html: { class: 'form-control' } %>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <%= a.input :field1, label: 'Endereço', input_html: { class: 'form-control' } %>
+            </div>
+          </div>
+          
+          <div class="col-md-2">
+            <div class="form-group">
+              <%= a.input :field2, label: 'Nº', input_html: { class: 'form-control' } %>
+            </div>
+          </div>
+          
+          <div class="col-md-2">
+            <div class="form-group">
+              <%= a.input :field3, label: 'Complemento', input_html: { class: 'form-control' } %>
+            </div>
+          </div>
+          
+          <div class="col-md-4">
+            <div class="form-group">
+              <%= a.input :field4, label: 'Bairro', input_html: { class: 'form-control' } %>
+            </div>
+          </div>
         </div>
         
-        <div class="form-group">
-          <%= a.input :field2, label: 'Nº', input_html: { class: 'form-control' } %>
-        </div>
-        
-        <div class="form-group">
-          <%= a.input :field3, label: 'Complemento', input_html: { class: 'form-control' } %>
-        </div>
-        
-        <div class="form-group">
-          <%= a.input :field4, label: 'Bairro', input_html: { class: 'form-control' } %>
-        </div>
-        
-        <div class="form-group">
-          <%= a.input :city, label: 'Cidade', input_html: { class: 'form-control' } %>
-        </div>
-        
-        <div class="form-group">
-          <%= a.input :state, label: 'Estado', input_html: { class: 'form-control' } %>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <%= a.input :city, label: 'Cidade', input_html: { class: 'form-control' } %>
+            </div>
+          </div>
+          
+          <div class="col-md-4">
+            <div class="form-group">
+              <%= a.input :state, label: 'Estado', input_html: { class: 'form-control' } %>
+            </div>
+          </div>
         </div>
       </fieldset>
     <% end %>

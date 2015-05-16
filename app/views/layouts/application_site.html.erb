@@ -12,6 +12,14 @@
   <%= render 'layouts/site/navbar' %>
 
   <div class="container">
+    <% if flash[:notice] -%>
+      <div class="alert alert-info" role="alert">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="container">
     <%= yield %>
   </div>
 </body>

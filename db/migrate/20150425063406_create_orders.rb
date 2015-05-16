@@ -1,7 +1,7 @@
 class CreateOrders < ActiveRecord::Migration
   def change
     create_table :orders do |t|
-      t.decimal :freight_price
+      t.float :freight_price, scale: 2
       t.integer :freight_type
       t.integer :status
       t.string :delivery_field1
