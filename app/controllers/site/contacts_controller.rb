@@ -1,12 +1,15 @@
 class Site::ContactsController < Site::ApplicationController
+  protect_from_forgery with: :null_session
+
   def index
     @contact = Contact.new
   end
 
   def create
     @contact = Contact.new(contact_params)
-    if ContactMailer.msg(@contact).deliver
-      redirect_to contact_path, notice: 'Sua mensagem foi enviada com sucesso.'
+    if @contact.valid?
+      ContactMailer.msg(@contact).deliver
+      redirect_to contacts_path, notice: 'Sua mensagem foi enviada com sucesso.'
     else
       redirect_to :index, notice: 'Não foi possível enviar sua mensagem. Tente novamente.'
     end

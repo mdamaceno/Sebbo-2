@@ -77,6 +77,7 @@ Rails.application.routes.draw do
 
     # Páginas estáticas
     get    '/contato'             => 'contacts#index', as: :contacts
+    post   '/contato'             => 'contacts#create'
 
   end
 
