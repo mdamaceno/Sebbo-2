@@ -17,4 +17,4 @@ Rails.application.config.assets.precompile += %w( admin/application_admin.css )
   Rails.application.config.assets.precompile += ["site/#{controller}.js"]
 end
 
-Rails.application.config.assets.precompile += %w( ckeditor/* )
+Rails.application.config.assets.precompile += %w(ckeditor/*)
