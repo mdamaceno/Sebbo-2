@@ -10,6 +10,8 @@ Rails.application.config.assets.version = '1.0'
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( search.js )
 
+Rails.application.config.assets.precompile += %w( fonts/* images/* ckeditor/* )
+
 Rails.application.config.assets.precompile += %w( site/application_site.css )
 Rails.application.config.assets.precompile += %w( admin/application_admin.css )
 
@@ -17,4 +19,3 @@ Rails.application.config.assets.precompile += %w( admin/application_admin.css )
   Rails.application.config.assets.precompile += ["site/#{controller}.js"]
 end
 
-Rails.application.config.assets.precompile += %w(ckeditor/*)
