@@ -16,3 +16,5 @@ Rails.application.config.assets.precompile += %w( admin/application_admin.css )
 %w( carts calcula-frete busca-cep ).each do |controller|
   Rails.application.config.assets.precompile += ["site/#{controller}.js"]
 end
+
+Rails.application.config.assets.precompile += %w( ckeditor/* )

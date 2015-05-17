@@ -11,6 +11,8 @@
 /log/*
 !/log/.keep
 /tmp
+/config/initializes/devise.rb
+/config/initializes/secret_token.rb
 /config/database.yml
 /config/environments/development.rb
 /public/uploads
