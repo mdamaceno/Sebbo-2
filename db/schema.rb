@@ -82,8 +82,9 @@ ActiveRecord::Schema.define(version: 20150517234822) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.float    "freight_price",   limit: 24
+    t.decimal  "freight_price",               precision: 10
     t.integer  "freight_type",    limit: 4
+    t.integer  "payment_method",  limit: 4
     t.integer  "status",          limit: 4
     t.string   "delivery_field1", limit: 255
     t.string   "delivery_field2", limit: 255
@@ -94,8 +95,8 @@ ActiveRecord::Schema.define(version: 20150517234822) do
     t.integer  "user_id",         limit: 4
     t.integer  "updated_by",      limit: 4
     t.integer  "deactivated_by",  limit: 4
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
   end
 
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
@@ -113,12 +114,12 @@ ActiveRecord::Schema.define(version: 20150517234822) do
 
   create_table "product_orders", force: :cascade do |t|
     t.string   "name",        limit: 255
-    t.float    "price",       limit: 24
+    t.decimal  "price",                     precision: 10
     t.text     "description", limit: 65535
     t.integer  "quantity",    limit: 4
     t.integer  "order_id",    limit: 4
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
   end
 
   add_index "product_orders", ["order_id"], name: "index_product_orders_on_order_id", using: :btree
