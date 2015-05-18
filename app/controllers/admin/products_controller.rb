@@ -34,7 +34,7 @@ class Admin::ProductsController < Admin::ApplicationController
   def update
     respond_to do |format|
       if @product.update(product_params)
-        format.html { redirect_to admin_product_path(@product), notice: "Atualizado com sucesso." }
+        format.html { render :edit, notice: "Atualizado com sucesso." }
       else
         format.html { render :edit }
       end
