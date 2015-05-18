@@ -27,13 +27,12 @@ module ApplicationHelper
     content_for :description, page_description.to_s
   end
 
-  def price_with_tax(id)
+  def price_with_tax(price)
     taxes = Tax.all
     t = 0
     taxes.each do |tax|
       t += tax.percentage
     end
-    price = Product.find(id).price
-    price + (price * t / 100)
+    with_tax = price + price * t / 100
   end
 end
