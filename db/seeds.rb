@@ -85,7 +85,7 @@ u.doc2 = '17166173'
 u.active = 1
 u.group = 'Administrador'
 u.email = 'maadamaceno@gmail.com'
-u.password = '123456789'
+u.password = ENV["USER_PASS"]
 u.save!
 puts 'Usuário criado'
 
