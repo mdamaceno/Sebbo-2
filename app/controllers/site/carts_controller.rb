@@ -7,13 +7,18 @@ class Site::CartsController < Site::ApplicationController
 
   def index
     if current_user.addresses.size > 0
-      @carts = Cart.where(user_id: current_user.id)
-      gon.current_user = current_user
-      gon.address = current_user.addresses[0]
-      respond_with(@carts)
+      if Cart.where(user_id: current_user.id).count > 0
+        @carts = Cart.where(user_id: current_user.id)
+        gon.current_user = current_user
+        gon.address = current_user.addresses[0]
+        respond_with(@carts)
+      else
+        redirect_to root_path(current_user),
+          notice: 'Adicione um produto ao carrinho.'
+      end
     else
       redirect_to edit_user_path(current_user),
-      notice: 'Cadastre um endereço antes de visualizar seu carrinho.'
+        notice: 'Cadastre um endereço antes de visualizar seu carrinho.'
     end
   end
 
