@@ -1,5 +1,4 @@
 class Admin::TaxesController < Admin::ApplicationController
-
   before_action :set_tax, only: [:edit, :update, :destroy]
 
   def index
