@@ -14,6 +14,7 @@ Submenu.create([name: 'Pedidos', route: 'pedidos', active: 1, menu_id: 1])
 Submenu.create([name: 'Home', route: 'home', active: 1, menu_id: 2])
 Submenu.create([name: 'Páginas', route: 'paginas', active: 1, menu_id: 2])
 Submenu.create([name: 'Usuários', route: 'usuarios', active: 1, menu_id: 3])
+Submenu.create([name: 'Impostos', route: 'impostos', active: 1, menu_id: 3])
 puts 'Submenus criados'
 
 # Pages
@@ -47,6 +48,7 @@ Category.create([name: 'Esoterismo', active: 1])
 Category.create([name: 'Geografia', active: 1])
 Category.create([name: 'História', active: 1])
 Category.create([name: 'Religião', active: 1])
+Category.create([name: 'Matemática', active: 1])
 Category.create([name: 'Esporte e Lazer', active: 1])
 Category.create([name: 'Dicionário', active: 1])
 puts 'Categorias criadas'
