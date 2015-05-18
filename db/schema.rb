@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150429013107) do
+ActiveRecord::Schema.define(version: 20150517234822) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "field1",         limit: 255
@@ -174,6 +174,13 @@ ActiveRecord::Schema.define(version: 20150429013107) do
   end
 
   add_index "submenus", ["menu_id"], name: "index_submenus_on_menu_id", using: :btree
+
+  create_table "taxes", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.float    "percentage", limit: 24
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "firstname",              limit: 255

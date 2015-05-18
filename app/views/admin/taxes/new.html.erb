@@ -1,0 +1,21 @@
+<p></p>
+<p><%= link_to 'Voltar', admin_taxes_path, class: 'btn btn-primary' %></p>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <%= render 'form' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% content_for :title_breadcrumb do %>
+  <section class="content-header">
+    <h1>
+      Impostos
+      <small>(novo)</small>
+    </h1>
+    <%= render 'breadcrumb' %>
+  </section>
+<% end %>

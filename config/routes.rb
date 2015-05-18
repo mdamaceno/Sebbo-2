@@ -184,6 +184,16 @@ Rails.application.routes.draw do
     delete '/usuarios/:id'        => 'users#destroy'
     get    '/clientes'            => 'users#clients',  as: :clients
 
+    # Impostos
+    get    '/impostos'            => 'taxes#index',  as: :taxes
+    post   '/impostos'            => 'taxes#create'
+    get    '/impostos/novo'       => 'taxes#new',    as: :new_tax
+    get    '/impostos/:id/editar' => 'taxes#edit',   as: :edit_tax
+    get    '/impostos/:id'        => 'taxes#show',   as: :tax
+    patch  '/impostos/:id'        => 'taxes#update'
+    put    '/impostos/:id'        => 'taxes#update'
+    delete '/impostos/:id'        => 'taxes#destroy'
+
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
