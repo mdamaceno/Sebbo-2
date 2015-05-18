@@ -113,12 +113,12 @@ ActiveRecord::Schema.define(version: 20150517234822) do
 
   create_table "product_orders", force: :cascade do |t|
     t.string   "name",        limit: 255
-    t.decimal  "price",                     precision: 10
+    t.float    "price",       limit: 24
     t.text     "description", limit: 65535
     t.integer  "quantity",    limit: 4
     t.integer  "order_id",    limit: 4
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   add_index "product_orders", ["order_id"], name: "index_product_orders_on_order_id", using: :btree

@@ -2,7 +2,7 @@ class CreateProductOrders < ActiveRecord::Migration
   def change
     create_table :product_orders do |t|
       t.string :name
-      t.decimal :price
+      t.float :price
       t.text :description
       t.integer :quantity
       t.references :order, index: true

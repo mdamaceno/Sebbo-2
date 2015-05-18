@@ -1,3 +1,18 @@
+conn = ActiveRecord::Base.connection()
+
+conn.execute('SET FOREIGN_KEY_CHECKS=0;')
+puts 'Chaves estrangeiras desigadas'
+
+tables = %w(
+  menus submenus pages categories taxes users orders product_orders carts
+  subcategories addresses
+)
+
+tables.each do |table|
+  conn.execute("TRUNCATE TABLE #{table}")
+  puts "Tabela #{table} reiniciada"
+end
+
 # Menu
 Menu.create([name: 'Cadastros', icon: 'fa-bars', active: 1])
 Menu.create([name: 'Gerenciar Site', icon: 'fa-desktop', active: 1])
@@ -53,6 +68,12 @@ Category.create([name: 'Esporte e Lazer', active: 1])
 Category.create([name: 'Dicionário', active: 1])
 puts 'Categorias criadas'
 
+# Taxas
+Tax.create(name: 'CPP', percentage: '2.75')
+Tax.create(name: 'IMCS', percentage: '1.25')
+Tax.create(name: 'Margem de lucro', percentage: '10')
+puts 'Taxas criadas'
+
 # Users
 u = User.new
 u.firstname = 'Marco'
@@ -67,3 +88,6 @@ u.email = 'maadamaceno@gmail.com'
 u.password = '123456789'
 u.save!
 puts 'Usuário criado'
+
+conn.execute('SET FOREIGN_KEY_CHECKS=1;')
+puts 'Chaves estrangeiras ligadas'
