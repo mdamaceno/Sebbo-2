@@ -27,6 +27,14 @@
           </a>
           <%= render 'cart_freight' %>
         </div>
+        <div class="panel panel-default">
+          <a href="#p-payment" data-toggle="collapse" data-parent="#accordion" aria-expanded="true" aria-controls="collapseOne">
+            <div class="panel-heading">
+              <h3 class="panel-title"><span class="fa fa-fw fa-credit-card"></span> Pagamento</h3>
+            </div>
+          </a>
+          <%= render 'cart_payment' %>
+        </div>
       </div>
       <p class="text-right">
         <%= link_to 'Continuar comprando', root_path, class: 'btn btn-primary' %>
