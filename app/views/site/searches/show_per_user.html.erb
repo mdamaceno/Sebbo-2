@@ -1,0 +1,27 @@
+<section class="my-searches">
+  <div class="panel-group">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="panel-title"><span class="fa fa-fw fa-search"></span> Minhas pesquisas</div>
+      </div>
+      <div class="panel-body">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Termo</th>
+              <th>Dia e hora</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @searches.each do |search| %>
+              <tr>
+                <td><%= search.term %></td>
+                <td><%= dmyhm search.created_at %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

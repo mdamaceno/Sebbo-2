@@ -80,8 +80,9 @@ Rails.application.routes.draw do
     post '/contato'  => 'contacts#create'
 
     # Pesquisa
-    get  '/pesquisa' => 'searches#index', as: :searches
-    post '/pesquisa' => 'searches#create'
+    get  '/pesquisa'         => 'searches#index',         as: :searches
+    get  '/minhas-pesquisas' => 'searches#show_per_user', as: :search
+    post '/pesquisa'         => 'searches#create'
 
   end
 
@@ -197,6 +198,13 @@ Rails.application.routes.draw do
     patch  '/impostos/:id'        => 'taxes#update'
     put    '/impostos/:id'        => 'taxes#update'
     delete '/impostos/:id'        => 'taxes#destroy'
+
+    # Descontos
+    get    '/descontos'      => 'discounts#index', as: :discounts
+    get    '/descontos/novo' => 'discounts#new',   as: :new_discount
+    get    '/descontos/:id'  => 'discounts#show',  as: :discount
+    post   '/descontos'      => 'discounts#create'
+    delete '/descontos/:id'  => 'discounts#create'
 
   end
 
