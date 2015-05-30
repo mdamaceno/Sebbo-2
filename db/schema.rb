@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150517234822) do
+ActiveRecord::Schema.define(version: 20150530022904) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "field1",         limit: 255
@@ -82,9 +82,8 @@ ActiveRecord::Schema.define(version: 20150517234822) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.decimal  "freight_price",               precision: 10
+    t.float    "freight_price",   limit: 24
     t.integer  "freight_type",    limit: 4
-    t.integer  "payment_method",  limit: 4
     t.integer  "status",          limit: 4
     t.string   "delivery_field1", limit: 255
     t.string   "delivery_field2", limit: 255
@@ -95,8 +94,8 @@ ActiveRecord::Schema.define(version: 20150517234822) do
     t.integer  "user_id",         limit: 4
     t.integer  "updated_by",      limit: 4
     t.integer  "deactivated_by",  limit: 4
-    t.datetime "created_at",                                 null: false
-    t.datetime "updated_at",                                 null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
@@ -114,12 +113,12 @@ ActiveRecord::Schema.define(version: 20150517234822) do
 
   create_table "product_orders", force: :cascade do |t|
     t.string   "name",        limit: 255
-    t.decimal  "price",                     precision: 10
+    t.float    "price",       limit: 24
     t.text     "description", limit: 65535
     t.integer  "quantity",    limit: 4
     t.integer  "order_id",    limit: 4
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   add_index "product_orders", ["order_id"], name: "index_product_orders_on_order_id", using: :btree
@@ -147,6 +146,15 @@ ActiveRecord::Schema.define(version: 20150517234822) do
   add_index "products", ["category_id"], name: "index_products_on_category_id", using: :btree
   add_index "products", ["subcategory_id"], name: "index_products_on_subcategory_id", using: :btree
   add_index "products", ["user_id"], name: "index_products_on_user_id", using: :btree
+
+  create_table "searches", force: :cascade do |t|
+    t.string   "term",       limit: 255
+    t.integer  "user_id",    limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "searches", ["user_id"], name: "index_searches_on_user_id", using: :btree
 
   create_table "subcategories", force: :cascade do |t|
     t.string   "name",           limit: 255
@@ -221,6 +229,7 @@ ActiveRecord::Schema.define(version: 20150517234822) do
   add_foreign_key "products", "categories"
   add_foreign_key "products", "subcategories"
   add_foreign_key "products", "users"
+  add_foreign_key "searches", "users"
   add_foreign_key "subcategories", "categories"
   add_foreign_key "submenus", "menus"
 end

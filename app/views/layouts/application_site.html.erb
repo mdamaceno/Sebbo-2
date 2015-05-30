@@ -30,6 +30,20 @@
   </div>
 
   <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-4">
+        <%= simple_form_for Search.new, html: { :class => 'form-inline' } do |f| %>
+          <div class="form-group">
+            <%= f.input :term, label: false %>
+          </div>
+          <%= f.button :submit, 'Pesquisar', class: 'btn btn-primary' %>
+        <% end %>
+        <br>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
     <%= yield %>
   </div>
 </body>

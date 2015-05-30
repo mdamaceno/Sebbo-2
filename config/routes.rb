@@ -76,8 +76,12 @@ Rails.application.routes.draw do
     post   '/calcula-frete'       => 'freight#calc'
 
     # Páginas estáticas
-    get    '/contato'             => 'contacts#index', as: :contacts
-    post   '/contato'             => 'contacts#create'
+    get  '/contato'  => 'contacts#index', as: :contacts
+    post '/contato'  => 'contacts#create'
+
+    # Pesquisa
+    get  '/pesquisa' => 'searches#index', as: :searches
+    post '/pesquisa' => 'searches#create'
 
   end
 

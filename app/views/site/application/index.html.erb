@@ -1,0 +1,34 @@
+<section class="products-listing">
+  <div class="alert alert-info" role="alert">
+    Mostrando resultados da busca por: "<%= @searches_term %>"
+  </div>
+  <div class="row">
+    <% @searches.each do |product| %>
+      <div class="col-sm-12 col-md-4">
+        <div class="panel panel-custom">
+          <div class="panel-heading">
+            <h3 class="panel-title"><%= product.name %></h3>
+          </div>
+          <div class="panel-body">
+            <div class="panel-image text-center">
+              <%= image_tag(product.cover, class: 'img-responsive centeredImage') %>
+            </div>
+            <%= raw product.description.truncate(100) %>
+          </div>
+          <div class="panel-footer text-right"><%= link_to "Ver detalhes", product_path(product) %> | <strong><%= number_to_currency(price_with_tax(product.price), unit: 'R$', separator: ",", delimiter: "") %></strong></div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <% if @searches.count < 1 %>
+        <p>Nenhum resultado encontrado.</p>
+      <% elsif @searches.count == 1 %>
+        <p>Encontrado <%= @searches.count %> resultado.</p>
+      <% else %>
+        <p>Encontrados <%= @searches.count %> resultados.</p>
+      <% end %>
+    </div>
+  </div>
+</section>
