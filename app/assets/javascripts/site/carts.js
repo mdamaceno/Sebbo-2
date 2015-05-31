@@ -18,6 +18,7 @@ $(document).ready(function() {
       }
     });
 
+    var value_without_freight = sum.toFixed(2)
     document.getElementById('total-cart').innerHTML = 'Total: R$' + sum.toFixed(2).replace('.', ',');
 
     $(".product-refresh").click(function(event) {
@@ -103,13 +104,37 @@ $(document).ready(function() {
                 },
               })
               .done(function(data) {
-                window.location.reload();
+                console.log("success");
               })
               .fail(function() {
                 console.log("error");
               });
           };
 
+          // Verificando cartão de crédito
+          $.ajax({
+            url: '/cartao-credito',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+              credit_card: {
+                card_number: $("input[name='credit_card_number']").val(),
+                code: $("input[name='credit_card_code']").val(),
+                client_name: $("input[name='credit_card_client_name']").val(),
+                expiration: $("input[name='credit_card_year']").val() + $("input[name='credit_card_month']").val(),
+                quota: $("#quota option:selected").val(),
+                value: parseFloat(value_without_freight) + parseFloat($("input[name='tipoFrete']:checked").data("valor")),
+                client_id: gon.current_user.id
+              }
+            },
+          })
+          .done(function() {
+            window.location.reload();
+          })
+          .fail(function() {
+            window.location.reload();
+          });
+          
         })
         .fail(function() {
           console.log("error");

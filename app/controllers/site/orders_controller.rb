@@ -19,6 +19,7 @@ class Site::OrdersController < Site::ApplicationController
   def create
     @order = Order.new(order_params)
     @order.save
+
     Cart.destroy_all(user_id: current_user.id)
     render json: { message: "Pedido registrado com sucesso.", id: @order.id }
   end
@@ -31,6 +32,10 @@ class Site::OrdersController < Site::ApplicationController
   def destroy
     @order.destroy
     respond_with(@order)
+  end
+
+  def verification
+    
   end
 
   private

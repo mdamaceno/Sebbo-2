@@ -84,6 +84,9 @@ Rails.application.routes.draw do
     get  '/minhas-pesquisas' => 'searches#show_per_user', as: :search
     post '/pesquisa'         => 'searches#create'
 
+    # Cartão de crédito
+    post '/cartao-credito' => 'credit_card#verification'
+
   end
 
   namespace :admin do
@@ -147,6 +150,7 @@ Rails.application.routes.draw do
     patch  '/pedidos/:id'        => 'orders#update'
     put    '/pedidos/:id'        => 'orders#update'
     delete '/pedidos/:id'        => 'orders#destroy'
+    post '/pedidos/verificacao' => 'orders#verifcation'
 
     # Produtos de pedidos
     get    '/produtos-pedidos'            => 'product_orders#index',  as: :product_orders

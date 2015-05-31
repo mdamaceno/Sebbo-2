@@ -7,7 +7,8 @@ class Order < ActiveRecord::Base
   }
   enum status: {
     'Processando' => 0, 'Em análise' => 1, 'Confirmado' => 2,
-    'Com transportadora' => 3, 'Entregue' => 4, 'Cancelado' => 5
+    'Com transportadora' => 3, 'Entregue' => 4, 'Cancelado' => 5,
+    'Verificar com a operadora' => 6
   }
 
   def total(id)
