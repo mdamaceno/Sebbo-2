@@ -37,9 +37,9 @@ Rails.application.routes.draw do
     get  '/paginas/:id'       => 'pages#show',          as: :page
 
     #    Pedidos
-    get  '/meus-pedidos'     => 'orders#index', as: :orders
-    get  '/pedido/:id' => 'orders#show',  as: :order
-    post '/pedido'     => 'orders#create'
+    get  '/meus-pedidos' => 'orders#index', as: :orders
+    get  '/pedido/:id'   => 'orders#show',  as: :order
+    post '/pedido'       => 'orders#create'
 
     # Produtos de pedidos
     get    '/produtos-pedidos'            => 'product_orders#index',  as: :product_orders
@@ -142,15 +142,15 @@ Rails.application.routes.draw do
     delete '/enderecos/:id'        => 'addresses#destroy'
 
     # Pedidos
-    get    '/pedidos'            => 'orders#index',  as: :orders
-    post   '/pedidos'            => 'orders#create'
-    get    '/pedidos/novo'       => 'orders#new',    as: :new_order
-    get    '/pedidos/:id/editar' => 'orders#edit',   as: :edit_order
-    get    '/pedidos/:id'        => 'orders#show',   as: :order
-    patch  '/pedidos/:id'        => 'orders#update'
-    put    '/pedidos/:id'        => 'orders#update'
-    delete '/pedidos/:id'        => 'orders#destroy'
-    post '/pedidos/verificacao' => 'orders#verifcation'
+    get    '/pedidos'             => 'orders#index',      as: :orders
+    post   '/pedidos'             => 'orders#create'
+    get    '/pedidos/novo'        => 'orders#new',        as: :new_order
+    get    '/pedidos/:id/editar'  => 'orders#edit',       as: :edit_order
+    get    '/pedidos/:id'         => 'orders#show',       as: :order
+    patch  '/pedidos/:id'         => 'orders#update'
+    put    '/pedidos/:id'         => 'orders#update'
+    delete '/pedidos/:id'         => 'orders#destroy'
+    post   '/pedidos/verificacao' => 'orders#verifcation'
 
     # Produtos de pedidos
     get    '/produtos-pedidos'            => 'product_orders#index',  as: :product_orders

@@ -20,7 +20,7 @@ class Site::CreditCardController < Site::ApplicationController
           "Validade"     => credit_card.expiration,
           "Valor"        => credit_card.value,
           "Parcelas"     => credit_card.quota,
-          "NomeEmpresa"  => "Sebbo Livros LTDA",
+          "NomeEmpresa"  => 'Sebbo Livros LTDA',
           "CNPJEmpresa"  => "236000157000105"
         },
         :attributes! => {
@@ -48,13 +48,13 @@ class Site::CreditCardController < Site::ApplicationController
 
     respond_to do |format|
       if response.success?
-        order.status = "Confirmado"
+        order.status = 'Confirmado'
         order.save
 
         format.html { render nothing: true, notice: 'Pedido realizado com sucesso.' }
 
       else
-        order.status = "Em análise"
+        order.status = 'Em análise'
         order.save
 
         format.html { render nothing: true, notice: 'Verifique situação do cartão junto a operadora.' }

@@ -11,6 +11,7 @@
                 <th>Data do pedido</th>
                 <th>Valor do pedido</th>
                 <th>Status</th>
+                <th>NFe</th>
               </tr>
             </thead>
             <tbody>
@@ -20,6 +21,7 @@
                   <td><%= dmy order.created_at %></td>
                   <td><%= number_to_currency(order.total(order.id), unit: 'R$', separator: ",", delimiter: "") %></td>
                   <td><%= order.status %></td>
+                  <td><strong><%= link_to 'PDF', order_path(order, format: 'pdf'), target: '_blank' %></strong></td>
                 </tr>
               <% end %>
             </tbody>
@@ -29,7 +31,3 @@
     </div>
   </div>
 </section>
-
-<script>
-  
-</script>

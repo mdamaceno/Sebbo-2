@@ -6,11 +6,16 @@ class Site::OrdersController < Site::ApplicationController
 
   def index
     @orders = Order.where(user_id: current_user.id)
-
   end
 
   def show
-    respond_with(@order)
+    respond_to do |format|
+      format.html
+      format.pdf
+    end
+  end
+
+  def nfe
   end
 
   def edit
@@ -35,7 +40,7 @@ class Site::OrdersController < Site::ApplicationController
   end
 
   def verification
-    
+
   end
 
   private
